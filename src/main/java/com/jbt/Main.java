@@ -1,5 +1,6 @@
 package com.jbt;
 
+import com.jbt.db.BookDB;
 import com.jbt.db.Config;
 
 public class Main {
@@ -8,9 +9,9 @@ public class Main {
 		
 		System.out.println("Hello, World!");
 		
-		Config.initConfig();
+		// Config.initConfig();
 
-
+		BookDB bookDB = new BookDB();
 		
 	}
 
