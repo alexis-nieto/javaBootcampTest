@@ -1,16 +1,17 @@
 package com.jbt.db;
 
-
-// Generate path to 'config' file.
-import java.nio.file.Path;
-
-
-
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 
 public abstract class Config {
 
@@ -26,6 +27,11 @@ public abstract class Config {
     private static Path getPath(){
         return CONFIG_PATH;
     }
+
+    private static String getPathAsString(){
+        return CONFIG_PATH.toString();
+    }
+
 
     // Initialize the folder and JSON on CONFIG_PATH
     public static void initConfig (){
@@ -78,7 +84,40 @@ public abstract class Config {
 
     }
 
-    
+    public static String getConfig(String key) {
+        try {
 
+            JSONParser parser = new JSONParser();
+            Object object = parser.parse(new FileReader(getPathAsString()));
+            JSONObject jsonObject = (JSONObject) object;
+
+            switch (key) {
+                case "database_url":
+                    String database_url = (String) jsonObject.get("database_url");
+                    return database_url;
+
+                case "database_name":
+                    String database_name = (String) jsonObject.get("database_name");
+                    return database_name;
+
+                case "username":
+                    String username = (String) jsonObject.get("username");
+                    return username;
+
+                case "password":
+                    String password = (String) jsonObject.get("password");
+                    return password;
+
+                default:
+                    throw new IllegalArgumentException("Invalid configuration key: " + key);
+            }
+
+        } catch(IOException | ParseException e) {
+            System.out.println("An error occurred while reading the configuration file.");
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 
 }
