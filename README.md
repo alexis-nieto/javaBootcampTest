@@ -143,6 +143,21 @@ Google's 'JSON.simple' library (version 1.1.1) manages the handling of this JSON
 
 Additionally, a demo file is available within the project directory at /demo/config.json.
 
+### Credentials retrieval.
+
+The static method `getConfig("key");` from the abstract class Config needs to be used to get a String with the requided configuration value from the JSON file. This method should handle any exceptions that may occur during the file reading or parsing process. For example:
+
+```java
+String example = Config.getConfig("database_url");
+```
+
+Available keys:
+- `database_url`: Database URL.
+- `database_name`: Database name.
+- `username`: Database username.
+- `password`: Database password.
+
+
 ## MySQL Database
 
 The `library` database is designed to manage the operations of a public library system. It consists of three main tables: `books`, `members`, and `loans`. This document provides a detailed explanation of each table and its columns.

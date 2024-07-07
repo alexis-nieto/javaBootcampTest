@@ -12,10 +12,19 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-
+/**
+ * The Config class provides methods for initializing and retrieving configuration values from a JSON file.
+ * It defines the file path for the configuration file and offers methods to initialize the file with a JSON skeleton
+ * if it doesn't exist, and retrieve specific configuration values based on the provided key.
+ * The configuration file is located in the user's home directory under "AppData/Local/lms/config.json".
+ */
 public abstract class Config {
 
-    // Path to %LOCALAPPDATA%/lms/config.json
+    /**
+         * The CONFIG_PATH constant represents the file path to the configuration JSON file.
+         * It is constructed using the user's home directory, followed by the subdirectories
+         * "AppData/Local/lms" and the file name "config.json".
+         */
     private static final Path CONFIG_PATH = Paths.get(
         System.getProperty("user.home"),
         "AppData",
@@ -31,9 +40,20 @@ public abstract class Config {
     private static String getPathAsString(){
         return CONFIG_PATH.toString();
     }
-
-
-    // Initialize the folder and JSON on CONFIG_PATH
+    
+    /**
+         * Initializes the configuration file and creates the necessary directories if they don't exist.
+         * If the configuration file is empty, it writes a JSON skeleton to the file.
+         * 
+         * The JSON skeleton contains the following keys and placeholder values:
+         * - "database_url": "url_here"
+         * - "database_name": "db_here"
+         * - "username": "username_here"
+         * - "password": "password_here"
+         * 
+         * If an error occurs during the initialization process, an error message is printed to the console
+         * and the stack trace is displayed.
+         */
     public static void initConfig (){
         try {
 
@@ -84,6 +104,14 @@ public abstract class Config {
 
     }
 
+    /**
+         * Retrieves the value of a specified configuration key from the JSON configuration file.
+         *
+         * @param key The key of the configuration value to retrieve. Valid keys are "database_url",
+         *            "database_name", "username", and "password".
+         * @return The value of the specified configuration key, or null if an error occurs while reading the file.
+         * @throws IllegalArgumentException if the provided key is invalid.
+         */
     public static String getConfig(String key) {
         try {
 
@@ -117,7 +145,6 @@ public abstract class Config {
             e.printStackTrace();
             return null;
         }
-
     }
 
 }
