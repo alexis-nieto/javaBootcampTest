@@ -10,7 +10,8 @@ public class Main {
 		
 		Config.initConfig();
 
-		MainTests.test_getAllBooks();
+		MainTests.test_addBook();
+		MainTests.test_getBookByISBN();
 
 	}
 

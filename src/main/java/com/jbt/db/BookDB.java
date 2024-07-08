@@ -144,6 +144,48 @@ public class BookDB {
 
 */
 
+    public void getBookByISBN(String isbn) {
+
+        String SQL = "SELECT * FROM books WHERE isbn = ?";
+
+        try (
+            Connection conn = DriverManager.getConnection(
+                this.DB_URL,
+                this.DB_USER,
+                this.DB_PASS
+            );
+            PreparedStatement ps = conn.prepareStatement(SQL);
+        ) {
+
+            ps.setString(1, isbn);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                StringBuilder sb = new StringBuilder();
+                sb.append("\n<<>><<>><<>><<>><<>><<>><<>><<>>\n\n");
+                sb.append("ISBN: ").append(rs.getString("isbn")).append("\n");
+                sb.append("Title: ").append(rs.getString("title")).append("\n");
+                sb.append("Author: ").append(rs.getString("author")).append("\n");
+                sb.append("Publisher: ").append(rs.getString("publisher")).append("\n");
+                sb.append("Publication Year: ").append(rs.getString("publication_year")).append("\n");
+                sb.append("Page Count: ").append(rs.getString("page_count")).append("\n");
+                sb.append("Stock Quantity: ").append(rs.getString("stock_quantity")).append("\n");
+                sb.append("Genre: ").append(rs.getString("genre")).append("\n");
+                sb.append("Language: ").append(rs.getString("language_db"));
+                
+                System.out.println(sb.toString());
+            }
+
+
+        } catch (Exception e) {
+            System.out.println("An error occurred while retrieving the books from the database.");
+            e.printStackTrace();
+        }
+    }
+
+
+
     public void getAllBooks() {
 
         String SQL = "SELECT * FROM books";

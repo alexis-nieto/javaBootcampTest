@@ -40,5 +40,12 @@ public class MainTests {
 		bookDB.deleteBook(book);
 
     }
+
+    public static void test_getBookByISBN() {
+
+        BookDB bookDB = new BookDB();
+		bookDB.getBookByISBN("9780141036144");
+
+    }
     
 }
