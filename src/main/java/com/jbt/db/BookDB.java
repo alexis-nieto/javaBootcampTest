@@ -120,29 +120,61 @@ public class BookDB {
         }
     }
 
-/*
+
 
     public void updateBook(Book book) {
-        for (int i = 0; i < books.size(); i++) {
-            if (books.get(i).getIsbn().equals(book.getIsbn())) {
-                books.set(i, book);
-                break;
-            }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("UPDATE books SET");
+        sb.append(" title = ?, ");
+        sb.append("author = ?, ");
+        sb.append("publisher = ?, ");
+        sb.append("publication_year = ?, ");
+        sb.append("page_count = ?, ");
+        sb.append("stock_quantity = ?, ");
+        sb.append("genre = ?, ");
+        sb.append("language_db = ? ");
+        sb.append("WHERE isbn = ?;");
+        //System.out.println(sb.toString());
+        
+        try (
+            Connection conn = DriverManager.getConnection(
+                this.DB_URL,
+                this.DB_USER,
+                this.DB_PASS
+            );
+            PreparedStatement ps = conn.prepareStatement(sb.toString());
+        ) {
+
+        ps.setString(1, book.getTitle());
+        ps.setString(2, book.getAuthor());
+        ps.setString(3, book.getPublisher());
+        ps.setInt(4, book.getPublicationYear());
+        ps.setInt(5, book.getPageCount());
+        ps.setInt(6, book.getStockQuantity());
+        ps.setString(7, book.getGenre());
+        ps.setString(8, book.getLanguage());
+        ps.setString(9, book.getIsbn());
+
+        ps.executeUpdate();
+
+        sb.setLength(0);
+        sb.append("Book with ISBN: '");
+        sb.append(book.getIsbn());
+        sb.append("' updated successfully.");
+        System.out.println(sb.toString());
+  
+        } catch (SQLIntegrityConstraintViolationException e) {
+            System.out.println("A book with the same ISBN0 already exists in the database.");
+            //e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("There was an error addig the book to the database.");
+            e.printStackTrace();
         }
     }
 
 
 
-    public Book getBook(String isbn) {
-        for (Book book : books) {
-            if (book.getIsbn().equals(isbn)) {
-                return book;
-            }
-        }
-        return null;
-    }
-
-*/
 
     public void getBookByISBN(String isbn) {
 

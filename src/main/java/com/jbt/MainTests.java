@@ -47,5 +47,21 @@ public class MainTests {
 		bookDB.getBookByISBN("9780141036144");
 
     }
+
+    public static void test_updateBook() {
+        BookDB bookDB = new BookDB();
+        Book book = new Book();
+        book.setIsbn("9780061124654");
+        book.setTitle("Updated Book Title");
+        book.setAuthor("Updated Author Name");
+        book.setPublisher("Updated Publisher Name");
+        book.setPublicationYear(2023);
+        book.setPageCount(200);
+        book.setStockQuantity(100);
+        book.setGenre("Updated Genre");
+        book.setLanguage("Updated Language");
+
+        bookDB.updateBook(book);
+    }
     
 }
