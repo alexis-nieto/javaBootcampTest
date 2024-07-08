@@ -230,13 +230,6 @@ The loans table stores information about the book loans made by library members.
 | created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | The timestamp indicating when the loan record was created. |
 | updated_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | The timestamp indicating when the loan record was last updated. |
 
-
-### Relationships
-
-- Each loan in the `loans` table is associated with a member from the `members` table through the `member_id` foreign key.
-
-- Each loan in the `loans` table is associated with a book from the `books` table through the `isbn` foreign key.
-
 ### Timestamps
 The `created_at` and `updated_at` columns in each table are used to track the creation and modification timestamps of records. These columns are automatically populated and updated by the database system.
 

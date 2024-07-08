@@ -46,9 +46,7 @@ CREATE TABLE loans (
     actual_return_date DATE,
     status ENUM('active', 'returned') NOT NULL DEFAULT 'active',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (member_id) REFERENCES members(member_id),
-    FOREIGN KEY (isbn) REFERENCES books(isbn)
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Insert sample data into the 'books' table
