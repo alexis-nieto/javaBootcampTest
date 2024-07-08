@@ -5,6 +5,8 @@
 
 TO-DO
 
+<!-- wyattrafaelhh@hotmail.com -->
+
 <!--
 
 ## **Caso práctico: Sistema de Gestión de Biblioteca**
@@ -190,7 +192,7 @@ The books table stores information about the books available in the library.
 | page_count | INT | NOT NULL | The number of pages in the book. |
 | stock_quantity | INT | NOT NULL, DEFAULT 0 | The quantity of the book in stock. |
 | genre | VARCHAR(100) | | The genre or category of the book. |
-| language | VARCHAR(50) | | The language in which the book is written. |
+| language_db | VARCHAR(50) | | The language in which the book is written. |
 | created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | The timestamp indicating when the book record was created. |
 | updated_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | The timestamp indicating when the book record was last updated. |
 
@@ -205,9 +207,9 @@ The members table stores information about the library members.
 | last_name | VARCHAR(50) | NOT NULL | The last name of the member. |
 | phone_number | VARCHAR(20) | | The phone number of the member. |
 | email | VARCHAR(255) | NOT NULL, UNIQUE | The email address of the member. |
-| address | VARCHAR(255) | | The address of the member. |
+| address_db | VARCHAR(255) | | The address of the member. |
 | city | VARCHAR(100) | | The city where the member resides. |
-| state | VARCHAR(100) | | The state where the member resides. |
+| state_db | VARCHAR(100) | | The state where the member resides. |
 | zip_code | VARCHAR(20) | | The zip code of the member's address. |
 | membership_start_date | DATE | NOT NULL | The date when the member's membership starts. |
 | membership_end_date | DATE | | The date when the member's membership ends (can be NULL if ongoing). |
@@ -226,7 +228,7 @@ The loans table stores information about the book loans made by library members.
 | loan_date | DATE | NOT NULL | The date when the book was borrowed. |
 | return_due_date | DATE | NOT NULL | The date by which the book should be returned. |
 | actual_return_date | DATE | | The actual date when the book was returned (can be NULL if not yet returned). |
-| status | ENUM | NOT NULL, DEFAULT 'active', ('active', 'returned') | The status of the loan ('active' or 'returned'). |
+| status_db | ENUM | NOT NULL, DEFAULT 'active', ('active', 'returned') | The status of the loan ('active' or 'returned'). |
 | created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | The timestamp indicating when the loan record was created. |
 | updated_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | The timestamp indicating when the loan record was last updated. |
 

@@ -35,7 +35,7 @@ public class BookDB {
          */
     public void addBook(Book book) {
 
-        String SQL = "INSERT INTO books (isbn, title, author, publisher, publication_year, page_count, stock_quantity, genre, language) " +
+        String SQL = "INSERT INTO books (isbn, title, author, publisher, publication_year, page_count, stock_quantity, genre, language_db) " +
         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         /*
             1) isbn
@@ -169,7 +169,7 @@ public class BookDB {
                 sb.append("Page Count: ").append(rs.getString("page_count")).append("\n");
                 sb.append("Stock Quantity: ").append(rs.getString("stock_quantity")).append("\n");
                 sb.append("Genre: ").append(rs.getString("genre")).append("\n");
-                sb.append("Language: ").append(rs.getString("language"));
+                sb.append("Language: ").append(rs.getString("language_db"));
                 
                 System.out.println(sb.toString());
             }
