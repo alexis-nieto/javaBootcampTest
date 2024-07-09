@@ -15,17 +15,6 @@ public class BookDB {
     private final String DB_USER = Config.getConfig("username");
     private final String DB_PASS = Config.getConfig("password");
 
-    /* Constructor
-    public BookDB() {
-    	
-        books = new ArrayList<>();
-        
-        //String sql = "SELECT * FROM books";
-
-
-    }
-    */
-
     /**
          * Adds a book to the database.
          * 
