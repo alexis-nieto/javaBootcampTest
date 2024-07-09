@@ -15,15 +15,14 @@ public class MenuBooks {
 
         while (!exit) {
 
-            PrinterCommon.clearScreen();
             PrinterMenuBooks.printBookMenu();
 
             String choice = scanner.nextLine();
-            System.out.println("You picked: " + choice);
+            //System.out.println("You picked: " + choice);
 
             switch (choice) {
                 case "1":
-                    System.out.println("> Adding new Book");
+                    MenuBookAdd.addNewBook();
                     break;
                 case "2":
                     // Update Book
@@ -35,14 +34,14 @@ public class MenuBooks {
                     // View Books
                     break;
                 case "5":
+                    PrinterCommon.clearScreen();
                     exit = true;
                     break;
                 default:
-                    PrinterCommon.clearScreen();
+                    //PrinterCommon.clearScreen();
                     System.out.println("Invalid choice. Please try again.");
                     continue; // Restart the loop to ask for input again
             }
         }
-        PrinterCommon.clearScreen();
     }
 }

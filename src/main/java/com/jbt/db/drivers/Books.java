@@ -18,13 +18,6 @@ public class Books {
     private final String DB_USER = Config.getConfig("username");
     private final String DB_PASS = Config.getConfig("password");
 
-    /**
-         * Adds a book to the database.
-         * 
-         * @param book The book to add to the database.
-         * @throws SQLIntegrityConstraintViolationException if a book with the same ISBN already exists in the database.
-         * @throws SQLException if there is an error adding the book to the database.
-         */
     public void addBook(Book book) {
 
         String SQL = "INSERT INTO books (isbn, title, author, publisher, publication_year, page_count, stock_quantity, genre, language_db) " +
@@ -74,13 +67,6 @@ public class Books {
         }
     }
 
-    
-    /**
-         * Deletes a book from the database based on its ISBN.
-         * 
-         * @param book The book object to be deleted from the database.
-         * @throws SQLException if there is an error deleting the book from the database.
-         */
     public void deleteBook(Book book) {
         String SQL = "DELETE FROM books WHERE isbn = ?;";
 
@@ -149,12 +135,7 @@ public class Books {
         }
     }
 
-    /**
-         * Retrieves books from the database based on the specified attribute and field.
-         *
-         * @param attribute The attribute to search for (e.g., "title", "author", "all").
-         * @param field The value of the attribute to search for.
-         */
+
     public void getBooks(String attribute, String field) {
 
         StringBuilder sql = new StringBuilder();
@@ -213,10 +194,31 @@ public class Books {
         //System.out.println("END");
     }
 
-    /**
-         * Get all books by passing no arguments.
-         */
+
     public void getBooks() {
         getBooks("all", "all");
     }
+
+    public boolean checkIfExists(Book book) {
+        String SQL = "SELECT COUNT(*) FROM books WHERE isbn = ?;";
+
+        try (
+            Connection conn = DriverManager.getConnection(
+                this.DB_URL,
+                this.DB_USER,
+                this.DB_PASS
+            );
+            PreparedStatement ps = conn.prepareStatement(SQL);
+        ) {
+            ps.setString(1, book.getIsbn());
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
+            return count > 0;
+        } catch (SQLException e) {
+            System.out.println("Task Failed:\nThere was an error checking if the book exists in the database.");
+            return false;
+        }
+    }
+
 }

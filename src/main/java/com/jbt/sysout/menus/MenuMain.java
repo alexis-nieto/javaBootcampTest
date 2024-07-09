@@ -27,6 +27,7 @@ public class MenuMain {
 
             switch (choice) {
                 case "1":
+                    PrinterCommon.clearScreen();
                     MenuBooks.displayBookMenu();
                     continue;
                 case "2":
