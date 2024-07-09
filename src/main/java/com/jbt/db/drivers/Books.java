@@ -1,4 +1,4 @@
-package com.jbt.db;
+package com.jbt.db.drivers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,9 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
+import com.jbt.db.Config;
 import com.jbt.db.containers.Book;
+import com.jbt.sysout.printers.BookPrinter;
 
-public class BookDB {
+public class Books {
 
     private final String DB_URL = Config.getConfig("database_url") + Config.getConfig("database_name");
     private final String DB_USER = Config.getConfig("username");
@@ -26,6 +28,7 @@ public class BookDB {
 
         String SQL = "INSERT INTO books (isbn, title, author, publisher, publication_year, page_count, stock_quantity, genre, language_db) " +
         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
         /*
             1) isbn
             2) title
@@ -59,18 +62,14 @@ public class BookDB {
 
         ps.executeUpdate();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Book with ISBN: '");
-        sb.append(book.getIsbn());
-        sb.append("' added successfully.");
-        System.out.println(sb.toString());
-  
+        BookPrinter.printSuccess("ISBN", book.getIsbn() , "added");
+
         } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("A book with the same ISBN already exists in the database.");
+            System.out.println("Task Failed:\nA book with the same ISBN already exists in the database.\n");
             //e.printStackTrace();
         } catch (SQLException e) {
-            System.out.println("There was an error addig the book to the database.");
-            e.printStackTrace();
+            System.out.println("Task Failed:\nThere was an unknown error adding the book to the database.\n");
+            //e.printStackTrace();
         }
     }
 
@@ -97,25 +96,19 @@ public class BookDB {
 
         ps.executeUpdate();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Book with ISBN: '");
-        sb.append(book.getIsbn());
-        sb.append("' deleted successfully or already absent.");
-        System.out.println(sb.toString());
+        BookPrinter.printSuccess("ISBN", book.getIsbn() , "deleted");
   
         } catch (SQLException e) {
-            System.out.println("There was an error deleting the book from the database.");
-            e.printStackTrace();
+            System.out.println("Task Failed:\nThere was an error deleting the book from the database.\n");
+            //e.printStackTrace();
         }
     }
-
-
 
     public void updateBook(Book book) {
 
         StringBuilder sb = new StringBuilder();
         sb.append("UPDATE books SET");
-        sb.append(" title = ?, ");
+        sb.append("title = ?, ");
         sb.append("author = ?, ");
         sb.append("publisher = ?, ");
         sb.append("publication_year = ?, ");
@@ -147,23 +140,13 @@ public class BookDB {
 
         ps.executeUpdate();
 
-        sb.setLength(0);
-        sb.append("Book with ISBN: '");
-        sb.append(book.getIsbn());
-        sb.append("' updated successfully.");
-        System.out.println(sb.toString());
-  
-        } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("A book with the same ISBN already exists in the database.");
-            //e.printStackTrace();
+        BookPrinter.printSuccess("ISBN", book.getIsbn() , "updated");
+
         } catch (SQLException e) {
-            System.out.println("There was an error addig the book to the database.");
-            e.printStackTrace();
+            System.out.println("Task Failed:\nThere was an error adding the book to the database.\n");
+            //e.printStackTrace();
         }
     }
-
-
-
 
     public void getBooks(String attribute, String field) {
 
@@ -210,7 +193,7 @@ public class BookDB {
             System.out.println("An error occurred while retrieving the books from the database.");
             e.printStackTrace();
         }
-        System.out.println("done");
+        //System.out.println("END");
     }
 
 

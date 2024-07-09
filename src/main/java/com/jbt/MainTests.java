@@ -1,13 +1,13 @@
 package com.jbt;
 
-import com.jbt.db.BookDB;
 import com.jbt.db.containers.Book;
+import com.jbt.db.drivers.Books;
 
 public class MainTests {
 
     public static void test_getAllBooks(){
 
-    		BookDB bookDB = new BookDB();
+    		Books bookDB = new Books();
 
 		bookDB.getAllBooks();
 
@@ -15,7 +15,7 @@ public class MainTests {
 
     public static void test_addBook(){
 
-    	BookDB bookDB = new BookDB();
+    	Books bookDB = new Books();
 		Book book = new Book();
 
 		book.setIsbn("9780061124654");
@@ -34,7 +34,7 @@ public class MainTests {
 
     public static void test_deleteBook() {
 
-        BookDB bookDB = new BookDB();
+        Books bookDB = new Books();
 		Book book = new Book();
 		book.setIsbn("9780061124654");
 		bookDB.deleteBook(book);
@@ -43,13 +43,13 @@ public class MainTests {
 
     public static void test_getBooks() {
 
-        BookDB bookDB = new BookDB();
-		bookDB.getBooks("language_db","fr");
+        Books bookDB = new Books();
+		bookDB.getBooks("language_db","glish");
 
     }
 
     public static void test_updateBook() {
-        BookDB bookDB = new BookDB();
+        Books bookDB = new Books();
         Book book = new Book();
         book.setIsbn("9780061124654");
         book.setTitle("Updated Book Title");
