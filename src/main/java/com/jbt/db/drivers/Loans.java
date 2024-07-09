@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 import com.jbt.db.Config;
-import com.jbt.db.containers.Member;
+import com.jbt.db.containers.Loan;
 import com.jbt.sysout.CommonPrinter;
-import com.jbt.sysout.printers.MemberPrinter;
+import com.jbt.sysout.printers.LoanPrinter;
 
 public class Loans {
 
@@ -19,27 +19,22 @@ public class Loans {
     private final String DB_PASS = Config.getConfig("password");
 
     /**
-         * Adds a member to the database.
+         * Adds a loan to the database.
          * 
-         * @param member The member to add to the database.
-         * @throws SQLIntegrityConstraintViolationException if a member with the same email already exists in the database.
-         * @throws SQLException if there is an error adding the member to the database.
+         * @param loan The loan to add to the database.
+         * @throws SQLIntegrityConstraintViolationException if a loan with the same member_id and isbn already exists in the database.
+         * @throws SQLException if there is an error adding the loan to the database.
          */
-    public void addMember(Member member) {
+    public void addLoan(Loan loan) {
 
-        String SQL = "INSERT INTO members (first_name, last_name, phone_number, email, address_db, city, state_db, zip_code, membership_start_date) " +
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO loans (member_id, isbn, loan_date, return_due_date) " +
+        "VALUES (?, ?, ?, ?)";
         
         /*
-            1) first_name
-            2) last_name
-            3) phone_number
-            4) email
-            5) address_db
-            6) city
-            7) state_db
-            8) zip_code
-            9) membership_start_date
+            1) member_id
+            2) isbn
+            3) loan_date
+            4) return_due_date
         */
 
         try (
@@ -51,37 +46,32 @@ public class Loans {
             PreparedStatement ps = conn.prepareStatement(SQL);
         ) {
 
-        ps.setString(1, member.getFirstName());
-        ps.setString(2, member.getLastName());
-        ps.setString(3, member.getPhoneNumber());
-        ps.setString(4, member.getEmail());
-        ps.setString(5, member.getAddress());
-        ps.setString(6, member.getCity());
-        ps.setString(7, member.getState());
-        ps.setString(8, member.getZipCode());
-        ps.setDate(9, new java.sql.Date(member.getMembershipStartDate().getTime()));
+        ps.setInt(1, loan.getMemberId());
+        ps.setString(2, loan.getIsbn());
+        ps.setDate(3, new java.sql.Date(loan.getLoanDate().getTime()));
+        ps.setDate(4, new java.sql.Date(loan.getReturnDueDate().getTime()));
 
         ps.executeUpdate();
 
-        MemberPrinter.printSuccess("Email", member.getEmail() , "added");
+        LoanPrinter.printSuccess("Loan ID", String.valueOf(loan.getLoanId()) , "added");
 
         } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("Task Failed:\nA member with the same email already exists in the database.\n");
+            System.out.println("Task Failed:\nA loan with the same member_id and isbn already exists in the database.\n");
             //e.printStackTrace();
         } catch (SQLException e) {
-            System.out.println("Task Failed:\nThere was an unknown error adding the member to the database.\n");
+            System.out.println("Task Failed:\nThere was an unknown error adding the loan to the database.\n");
             e.printStackTrace();
         }
     }
 
     /**
-         * Deletes a member from the database based on their member ID.
+         * Deletes a loan from the database based on its loan ID.
          * 
-         * @param member The member object to be deleted from the database.
-         * @throws SQLException if there is an error deleting the member from the database.
+         * @param loan The loan object to be deleted from the database.
+         * @throws SQLException if there is an error deleting the loan from the database.
          */
-    public void deleteMember(Member member) {
-        String SQL = "DELETE FROM members WHERE member_id = ?;";
+    public void deleteLoan(Loan loan) {
+        String SQL = "DELETE FROM loans WHERE loan_id = ?;";
 
         try (
             Connection conn = DriverManager.getConnection(
@@ -92,31 +82,29 @@ public class Loans {
             PreparedStatement ps = conn.prepareStatement(SQL);
         ) {
 
-        ps.setInt(1, member.getMemberId());
+        ps.setInt(1, loan.getLoanId());
 
         ps.executeUpdate();
 
-        MemberPrinter.printSuccess("Member ID", String.valueOf(member.getMemberId()) , "deleted");
+        LoanPrinter.printSuccess("Loan ID", String.valueOf(loan.getLoanId()) , "deleted");
   
         } catch (SQLException e) {
-            System.out.println("Task Failed:\nThere was an error deleting the member from the database.\n");
+            System.out.println("Task Failed:\nThere was an error deleting the loan from the database.\n");
             //e.printStackTrace();
         }
     }
 
-    public void updateMember(Member member) {
+    public void updateLoan(Loan loan) {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("UPDATE members SET ");
-        sb.append("first_name = ?, ");
-        sb.append("last_name = ?, ");
-        sb.append("phone_number = ?, ");
-        sb.append("email = ?, ");
-        sb.append("address_db = ?, ");
-        sb.append("city = ?, ");
-        sb.append("state_db = ?, ");
-        sb.append("zip_code = ? ");
-        sb.append("WHERE member_id = ?;");
+        sb.append("UPDATE loans SET ");
+        sb.append("member_id = ?, ");
+        sb.append("isbn = ?, ");
+        sb.append("loan_date = ?, ");
+        sb.append("return_due_date = ?, ");
+        sb.append("actual_return_date = ?, ");
+        sb.append("status_db = ? ");
+        sb.append("WHERE loan_id = ?;");
         
         //System.out.println(sb.toString());
         
@@ -129,46 +117,44 @@ public class Loans {
             PreparedStatement ps = conn.prepareStatement(sb.toString());
         ) {
 
-        ps.setString(1, member.getFirstName());
-        ps.setString(2, member.getLastName());
-        ps.setString(3, member.getPhoneNumber());
-        ps.setString(4, member.getEmail());
-        ps.setString(5, member.getAddress());
-        ps.setString(6, member.getCity());
-        ps.setString(7, member.getState());
-        ps.setString(8, member.getZipCode());
-        ps.setInt(9, member.getMemberId());
+        ps.setInt(1, loan.getMemberId());
+        ps.setString(2, loan.getIsbn());
+        ps.setDate(3, new java.sql.Date(loan.getLoanDate().getTime()));
+        ps.setDate(4, new java.sql.Date(loan.getReturnDueDate().getTime()));
+        ps.setDate(5, loan.getActualReturnDate() != null ? new java.sql.Date(loan.getActualReturnDate().getTime()) : null);
+        ps.setString(6, loan.getStatus());
+        ps.setInt(7, loan.getLoanId());
 
         ps.executeUpdate();
 
-        MemberPrinter.printSuccess("Member ID", String.valueOf(member.getMemberId()) , "updated");
+        LoanPrinter.printSuccess("Loan ID", String.valueOf(loan.getLoanId()) , "updated");
 
         } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("Task Failed:\nThe email already exists in the database, please try with a different one.\n");
+            System.out.println("Task Failed:\nThe loan already exists in the database, please try with a different one.\n");
             //e.printStackTrace();
         } catch (SQLException e) {
-            System.out.println("Task Failed:\nThere was an error updating the member in the database.\n");
+            System.out.println("Task Failed:\nThere was an error updating the loan in the database.\n");
             e.printStackTrace();
         }
     }
 
     /**
-         * Retrieves members from the database based on the specified attribute and field.
+         * Retrieves loans from the database based on the specified attribute and field.
          *
-         * @param attribute The attribute to search for (e.g., "first_name", "last_name", "all").
+         * @param attribute The attribute to search for (e.g., "member_id", "isbn", "all").
          * @param field The value of the attribute to search for.
          */
-    public void getMembers(String attribute, String field) {
+    public void getLoans(String attribute, String field) {
 
         StringBuilder sql = new StringBuilder();
 
         if (attribute.equalsIgnoreCase("all") && field.equalsIgnoreCase("all")) {
 
-            sql.append("SELECT * FROM members;");
+            sql.append("SELECT * FROM loans;");
 
         } else {
 
-            sql.append("SELECT * FROM members WHERE ");
+            sql.append("SELECT * FROM loans WHERE ");
             sql.append(attribute);
             sql.append(" LIKE LOWER(\"%");
             sql.append(field);
@@ -190,37 +176,34 @@ public class Loans {
 
             while (rs.next()) {
 
-                Member member = new Member();
+                Loan loan = new Loan();
 
-                member.setMemberId(rs.getInt("member_id"));
-                member.setFirstName(rs.getString("first_name"));
-                member.setLastName(rs.getString("last_name"));
-                member.setPhoneNumber(rs.getString("phone_number"));
-                member.setEmail(rs.getString("email"));
-                member.setAddress(rs.getString("address_db"));
-                member.setCity(rs.getString("city"));
-                member.setState(rs.getString("state_db"));
-                member.setZipCode(rs.getString("zip_code"));
-                member.setMembershipStartDate(rs.getDate("membership_start_date"));
+                loan.setLoanId(rs.getInt("loan_id"));
+                loan.setMemberId(rs.getInt("member_id"));
+                loan.setIsbn(rs.getString("isbn"));
+                loan.setLoanDate(rs.getDate("loan_date"));
+                loan.setReturnDueDate(rs.getDate("return_due_date"));
+                loan.setActualReturnDate(rs.getDate("actual_return_date"));
+                loan.setStatus(rs.getString("status_db"));
 
                 CommonPrinter.printSeparator();
-                MemberPrinter.printMemberDetails(member);
+                LoanPrinter.printLoanDetails(loan);
 
             }
 
             CommonPrinter.printSeparator();
 
         } catch (Exception e) {
-            System.out.println("Task Failed:\nAn error occurred while retrieving the books from the database.\n");
+            System.out.println("Task Failed:\nAn error occurred while retrieving the loans from the database.\n");
             e.printStackTrace();
         }
         //System.out.println("END");
     }
 
     /**
-         * Get all books by passing no arguments.
+         * Get all loans by passing no arguments.
          */
-    public void getMembers() {
-        getMembers("all", "all");
+    public void getLoans() {
+        getLoans("all", "all");
     }
 }

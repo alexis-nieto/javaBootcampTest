@@ -2,276 +2,100 @@ package com.jbt.db.containers;
 
 import java.util.Date;
 
-/**
- * Represents a member with various attributes such as member ID, first name, last name, phone number,
- * email, address, city, state, zip code, membership start date, and membership end date.
- * Provides getters and setters for accessing and modifying the member's attributes.
- * Implements validation checks for the setter methods to ensure data integrity.
- * Overrides the toString() method to provide a JSON-like string representation of the member object.
- */
 public class Loan {
-    private int memberId = 0;
-    private String firstName = "DEFAULT First Name";
-    private String lastName = "DEFAULT Last Name";
-    private String phoneNumber = "DEFAULT Phone Number";
-    private String email = "DEFAULT Email";
-    private String address_db = "DEFAULT Address";
-    private String city = "DEFAULT City";
-    private String state = "DEFAULT State";
-    private String zipCode = "DEFAULT Zip Code";
-    private Date membershipStartDate;
+    private int loanId = 0;
+    private int bookId = 0;
+    private int branchId = 0;
+    private int cardNo = 0;
+    private Date dateOut;
+    private Date dueDate;
+    private Date dateIn;
 
-    /**
-     * Gets the member ID.
-     *
-     * @return The member ID.
-     */
-    public int getMemberId() {
-        return memberId;
+    public int getLoanId() {
+        return loanId;
     }
 
-    /**
-     * Sets the member ID.
-     *
-     * @param memberId The member ID. Must be a non-negative integer.
-     * @throws IllegalArgumentException If the member ID is a negative integer.
-     */
-    public void setMemberId(int memberId) {
-        if (memberId >= 0) {
-            this.memberId = memberId;
+    public void setLoanId(int loanId) {
+        if (loanId >= 0) {
+            this.loanId = loanId;
         } else {
             throw new IllegalArgumentException(
-                "Member ID must be a non-negative integer."
+                "Loan ID must be a non-negative integer."
             );
         }
     }
 
-    /**
-     * Gets the first name of the member.
-     *
-     * @return The first name of the member.
-     */
-    public String getFirstName() {
-        return firstName;
+    public int getBookId() {
+        return bookId;
     }
 
-    /**
-     * Sets the first name of the member.
-     *
-     * @param firstName The first name of the member. Must be non-null, non-empty, and have a maximum length of 50 characters.
-     * @throws IllegalArgumentException If the first name is null, empty, or exceeds 50 characters.
-     */
-    public void setFirstName(String firstName) {
-        if (firstName != null && !firstName.isEmpty() && firstName.length() <= 50) {
-            this.firstName = firstName;
+    public void setBookId(int bookId) {
+        if (bookId >= 0) {
+            this.bookId = bookId;
         } else {
             throw new IllegalArgumentException(
-                "First name must be non-null, non-empty, and have a maximum length of 50 characters."
+                "Book ID must be a non-negative integer."
             );
         }
     }
 
-    /**
-     * Gets the last name of the member.
-     *
-     * @return The last name of the member.
-     */
-    public String getLastName() {
-        return lastName;
+    public int getBranchId() {
+        return branchId;
     }
 
-    /**
-     * Sets the last name of the member.
-     *
-     * @param lastName The last name of the member. Must be non-null, non-empty, and have a maximum length of 50 characters.
-     * @throws IllegalArgumentException If the last name is null, empty, or exceeds 50 characters.
-     */
-    public void setLastName(String lastName) {
-        if (lastName != null && !lastName.isEmpty() && lastName.length() <= 50) {
-            this.lastName = lastName;
+    public void setBranchId(int branchId) {
+        if (branchId >= 0) {
+            this.branchId = branchId;
         } else {
             throw new IllegalArgumentException(
-                "Last name must be non-null, non-empty, and have a maximum length of 50 characters."
+                "Branch ID must be a non-negative integer."
             );
         }
     }
 
-    /**
-     * Gets the phone number of the member.
-     *
-     * @return The phone number of the member.
-     */
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public int getCardNo() {
+        return cardNo;
     }
 
-    /**
-     * Sets the phone number of the member.
-     *
-     * @param phoneNumber The phone number of the member. Must be null or have a maximum length of 20 characters.
-     * @throws IllegalArgumentException If the phone number is not null and exceeds the maximum length of 20 characters.
-     */
-    public void setPhoneNumber(String phoneNumber) {
-        if (phoneNumber == null || phoneNumber.length() <= 20) {
-            this.phoneNumber = phoneNumber;
+    public void setCardNo(int cardNo) {
+        if (cardNo >= 0) {
+            this.cardNo = cardNo;
         } else {
             throw new IllegalArgumentException(
-                "Phone number must be null or have a maximum length of 20 characters."
+                "Card number must be a non-negative integer."
             );
         }
     }
 
-    /**
-     * Gets the email of the member.
-     *
-     * @return The email of the member.
-     */
-    public String getEmail() {
-        return email;
+    public Date getDateOut() {
+        return dateOut;
     }
 
-    /**
-     * Sets the email of the member.
-     *
-     * @param email The email of the member. Must be non-null, non-empty, and have a maximum length of 255 characters.
-     * @throws IllegalArgumentException If the email is null, empty, or exceeds 255 characters.
-     */
-    public void setEmail(String email) {
-        if (email != null && !email.isEmpty() && email.length() <= 255) {
-            this.email = email;
+    public void setDateOut(Date dateOut) {
+        if (dateOut != null) {
+            this.dateOut = dateOut;
         } else {
-            throw new IllegalArgumentException(
-                "Email must be non-null, non-empty, and have a maximum length of 255 characters."
-            );
+            throw new IllegalArgumentException("Date out must not be null.");
         }
     }
 
-    /**
-     * Gets the address of the member.
-     *
-     * @return The address of the member.
-     */
-    public String getAddress() {
-        return address_db;
+    public Date getDueDate() {
+        return dueDate;
     }
 
-    /**
-     * Sets the address of the member.
-     *
-     * @param address The address of the member. Must be null or have a maximum length of 255 characters.
-     * @throws IllegalArgumentException If the address is not null and exceeds the maximum length of 255 characters.
-     */
-    public void setAddress(String address) {
-        if (address == null || address.length() <= 255) {
-            this.address_db = address;
+    public void setDueDate(Date dueDate) {
+        if (dueDate != null) {
+            this.dueDate = dueDate;
         } else {
-            throw new IllegalArgumentException(
-                "Address must be null or have a maximum length of 255 characters."
-            );
+            throw new IllegalArgumentException("Due date must not be null.");
         }
     }
 
-    /**
-     * Gets the city of the member.
-     *
-     * @return The city of the member.
-     */
-    public String getCity() {
-        return city;
+    public Date getDateIn() {
+        return dateIn;
     }
 
-    /**
-     * Sets the city of the member.
-     *
-     * @param city The city of the member. Must be null or have a maximum length of 100 characters.
-     * @throws IllegalArgumentException If the city is not null and exceeds the maximum length of 100 characters.
-     */
-    public void setCity(String city) {
-        if (city == null || city.length() <= 100) {
-            this.city = city;
-        } else {
-            throw new IllegalArgumentException(
-                "City must be null or have a maximum length of 100 characters."
-            );
-        }
+    public void setDateIn(Date dateIn) {
+        this.dateIn = dateIn;
     }
-
-    /**
-     * Gets the state of the member.
-     *
-     * @return The state of the member.
-     */
-    public String getState() {
-        return state;
-    }
-    
-      /**
-     * Sets the state of the member.
-     *
-     * @param state The state of the member. Must be null or have a maximum length of 50 characters.
-     * @throws IllegalArgumentException If the state is not null and exceeds the maximum length of 50 characters.
-     */
-      public void setState(String state) {
-          if (state == null || state.length() <= 50) {
-              this.state = state;
-          } else {
-              throw new IllegalArgumentException(
-                  "State must be null or have a maximum length of 50 characters."
-              );
-          }
-      }
-
-      /**
-     * Gets the zip code of the member.
-     *
-     * @return The zip code of the member.
-     */
-      public String getZipCode() {
-          return zipCode;
-      }
-
-      /**
-     * Sets the zip code of the member.
-     *
-     * @param zipCode The zip code of the member. Must be null or have a maximum length of 20 characters.
-     * @throws IllegalArgumentException If the zip code is not null and exceeds the maximum length of 20 characters.
-     */
-      public void setZipCode(String zipCode) {
-          if (zipCode == null || zipCode.length() <= 20) {
-              this.zipCode = zipCode;
-          } else {
-              throw new IllegalArgumentException(
-                  "Zip code must be null or have a maximum length of 20 characters."
-              );
-          }
-      }
-
-      /**
-     * Gets the membership start date of the member.
-     *
-     * @return The membership start date of the member.
-     */
-      public Date getMembershipStartDate() {
-          return membershipStartDate;
-      }
-
-      /**
-     * Sets the membership start date of the member.
-     *
-     * @param membershipStartDate The membership start date of the member. Must not be null.
-     * @throws IllegalArgumentException If the membership start date is null.
-     */
-      public void setMembershipStartDate(Date membershipStartDate) {
-          if (membershipStartDate != null) {
-              this.membershipStartDate = membershipStartDate;
-          } else {
-              throw new IllegalArgumentException("Membership start date must not be null.");
-          }
-      }
-
-      /**
-     * Gets the membership end date of the member.
-     *
-     * @return The membership end date of the member.
-     */
 }

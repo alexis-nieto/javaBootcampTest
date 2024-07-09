@@ -10,7 +10,7 @@ public class Main {
 		
 		Config.initConfig();
 
-		
+		MainTests.test_getMembers();
 
 	}
 

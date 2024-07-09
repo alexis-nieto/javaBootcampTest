@@ -1,26 +1,22 @@
 package com.jbt.sysout.printers;
 
-import com.jbt.db.containers.Member;
+import com.jbt.db.containers.Loan;
 
 public class LoanPrinter {
 
-    public static void printMemberDetails(Member member) {
-        System.out.println("Member ID: " + member.getMemberId());
-        System.out.println("First Name: " + member.getFirstName());
-        System.out.println("Last Name: " + member.getLastName());
-        System.out.println("Phone Number: " + member.getPhoneNumber());
-        System.out.println("Email: " + member.getEmail());
-        System.out.println("Address: " + member.getAddress());
-        System.out.println("City: " + member.getCity());
-        System.out.println("State: " + member.getState());
-        System.out.println("Zip Code: " + member.getZipCode());
-        System.out.println("Membership Start Date: " + member.getMembershipStartDate());
+    public static void printLoanDetails(Loan loan) {
+        System.out.println("Loan ID: " + loan.getLoanId());
+        System.out.println("Book ID: " + loan.getBookId());
+        System.out.println("Member ID: " + loan.getMemberId());
+        System.out.println("Loan Date: " + loan.getLoanDate());
+        System.out.println("Due Date: " + loan.getDueDate());
+        System.out.println("Return Date: " + loan.getReturnDate());
     }
 
     public static void printSuccess(String attribute, String field, String event){
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Member with ");
+        sb.append("Loan with ");
         sb.append(attribute);
         sb.append(": '");
         sb.append(field);
