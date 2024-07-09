@@ -34,11 +34,13 @@ public class MenuBooks {
                     break;
                 case "3":
                     // Delete Book
-                    PrinterCommon.clearScreen();
-                    MenuBookUpdate.updateBook();
+                    //PrinterCommon.clearScreen();
+                    //MenuBookUpdate.updateBook();
                     break;
                 case "4":
                     // View Books
+                    PrinterCommon.clearScreen();
+                    MenuBookSearch.searchBook();
                     break;
                 case "5":
                     // View All Books
