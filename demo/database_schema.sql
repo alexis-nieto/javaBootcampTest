@@ -14,7 +14,7 @@ CREATE TABLE books (
     page_count INT NOT NULL,
     stock_quantity INT NOT NULL DEFAULT 0,
     genre VARCHAR(100),
-    language VARCHAR(50),
+    language_db VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -26,9 +26,9 @@ CREATE TABLE members (
     last_name VARCHAR(50) NOT NULL,
     phone_number VARCHAR(20),
     email VARCHAR(255) NOT NULL UNIQUE,
-    address VARCHAR(255),
+    address_db VARCHAR(255),
     city VARCHAR(100),
-    state VARCHAR(100),
+    state_db VARCHAR(100),
     zip_code VARCHAR(20),
     membership_start_date DATE NOT NULL,
     membership_end_date DATE,
@@ -44,15 +44,13 @@ CREATE TABLE loans (
     loan_date DATE NOT NULL,
     return_due_date DATE NOT NULL,
     actual_return_date DATE,
-    status ENUM('active', 'returned') NOT NULL DEFAULT 'active',
+    status_db ENUM('active', 'returned') NOT NULL DEFAULT 'active',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (member_id) REFERENCES members(member_id),
-    FOREIGN KEY (isbn) REFERENCES books(isbn)
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Insert sample data into the 'books' table
-INSERT INTO books (isbn, title, author, publisher, publication_year, page_count, stock_quantity, genre, language)
+INSERT INTO books (isbn, title, author, publisher, publication_year, page_count, stock_quantity, genre, language_db)
 VALUES
     ('9780141036144', '1984', 'George Orwell', 'Penguin Books', 1949, 328, 10, 'Dystopian Fiction', 'English'),
     ('9780060935467', 'To Kill a Mockingbird', 'Harper Lee', 'Harper Perennial', 1960, 336, 5, 'Classic Literature', 'English'),
@@ -64,7 +62,7 @@ VALUES
     ('9780143105428', 'Pride and Prejudice', 'Jane Austen', 'Penguin Classics', 1813, 480, 9, 'Romance', 'English');
 
 -- Insert sample data into the 'members' table
-INSERT INTO members (first_name, last_name, phone_number, email, address, city, state, zip_code, membership_start_date)
+INSERT INTO members (first_name, last_name, phone_number, email, address_db, city, state_db, zip_code, membership_start_date)
 VALUES
     ('John', 'Doe', '1234567890', 'john.doe@example.com', '123 Main St', 'New York', 'NY', '10001', '2022-01-01'),
     ('Jane', 'Smith', '9876543210', 'jane.smith@example.com', '456 Elm St', 'Los Angeles', 'CA', '90001', '2022-02-15'),
