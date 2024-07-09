@@ -15,14 +15,6 @@
         <scope>test</scope>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-    <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <version>5.12.0</version>
-        <scope>test</scope>
-    </dependency>
-
     <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
     <dependency>
         <groupId>com.mysql</groupId>
@@ -36,20 +28,6 @@
         <artifactId>json-simple</artifactId>
         <version>1.1.1</version>
     </dependency>
-
-    <!-- https://mvnrepository.com/artifact/com.googlecode.lanterna/lanterna -->
-    <dependency>
-        <groupId>com.googlecode.lanterna</groupId>
-        <artifactId>lanterna</artifactId>
-        <version>3.1.2</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.beryx/text-io -->
-        <dependency>
-            <groupId>org.beryx</groupId>
-            <artifactId>text-io</artifactId>
-            <version>3.4.1</version>
-        </dependency>
     
   </dependencies>
 
