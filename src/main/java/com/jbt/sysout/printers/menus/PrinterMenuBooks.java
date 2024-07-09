@@ -10,8 +10,9 @@ public class PrinterMenuBooks {
         sb.append("2. Update Book\n");
         sb.append("3. Delete Book\n");
         sb.append("4. View Books\n");
-        sb.append("5. Return to Main Menu\n");
-        sb.append("Enter your choice (1-5): ");
+        sb.append("5. View ALL Books\n");
+        sb.append("6. Return to Main Menu\n");
+        sb.append("Enter your choice (1-6): ");
         System.out.print(sb.toString());
     }
 

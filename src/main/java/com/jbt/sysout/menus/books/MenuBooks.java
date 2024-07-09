@@ -2,6 +2,7 @@ package com.jbt.sysout.menus.books;
 
 import java.util.Scanner;
 
+import com.jbt.db.drivers.Books;
 import com.jbt.sysout.PrinterCommon;
 import com.jbt.sysout.printers.menus.PrinterMenuBooks;
 
@@ -33,11 +34,18 @@ public class MenuBooks {
                     break;
                 case "3":
                     // Delete Book
+                    PrinterCommon.clearScreen();
+                    MenuBookUpdate.updateBook();
                     break;
                 case "4":
                     // View Books
                     break;
                 case "5":
+                    // View All Books
+                    Books books = new Books();
+                    books.getBooks();
+                break;
+                case "6":
                     PrinterCommon.clearScreen();
                     exit = true;
                     break;
