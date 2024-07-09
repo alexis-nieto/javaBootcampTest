@@ -41,10 +41,10 @@ public class MainTests {
 
     }
 
-    public static void test_getBookByISBN() {
+    public static void test_getBooks() {
 
         BookDB bookDB = new BookDB();
-		bookDB.getBookByISBN("9780141036144");
+		bookDB.getBooks("language_db","fr");
 
     }
 

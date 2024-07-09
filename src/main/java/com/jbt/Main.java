@@ -10,8 +10,7 @@ public class Main {
 		
 		Config.initConfig();
 
-		MainTests.test_addBook();
-		MainTests.test_updateBook();
+		MainTests.test_getBooks();
 
 	}
 

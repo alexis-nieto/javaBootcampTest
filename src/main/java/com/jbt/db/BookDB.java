@@ -165,7 +165,7 @@ public class BookDB {
         System.out.println(sb.toString());
   
         } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("A book with the same ISBN0 already exists in the database.");
+            System.out.println("A book with the same ISBN already exists in the database.");
             //e.printStackTrace();
         } catch (SQLException e) {
             System.out.println("There was an error addig the book to the database.");
@@ -176,9 +176,17 @@ public class BookDB {
 
 
 
-    public void getBookByISBN(String isbn) {
+    public void getBooks(String attribute, String field) {
 
-        String SQL = "SELECT * FROM books WHERE isbn = ?";
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("SELECT * FROM books WHERE ");
+        sql.append(attribute);
+        sql.append(" LIKE LOWER(\"%");
+        sql.append(field);
+        sql.append("%\");");
+
+        //System.out.println(sql.toString());
 
         try (
             Connection conn = DriverManager.getConnection(
@@ -186,10 +194,9 @@ public class BookDB {
                 this.DB_USER,
                 this.DB_PASS
             );
-            PreparedStatement ps = conn.prepareStatement(SQL);
+            PreparedStatement ps = conn.prepareStatement(sql.toString());
         ) {
 
-            ps.setString(1, isbn);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -208,12 +215,13 @@ public class BookDB {
                 
                 System.out.println(sb.toString());
             }
-
+            System.out.println("\n<<>><<>><<>><<>><<>><<>><<>><<>>\n");
 
         } catch (Exception e) {
             System.out.println("An error occurred while retrieving the books from the database.");
             e.printStackTrace();
         }
+        System.out.println("done");
     }
 
 
@@ -247,7 +255,7 @@ public class BookDB {
                 
                 System.out.println(sb.toString());
             }
-
+            System.out.println("\n<<>><<>><<>><<>><<>><<>><<>><<>>\n");
 
         } catch (Exception e) {
             System.out.println("An error occurred while retrieving the books from the database.");
