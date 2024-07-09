@@ -20,7 +20,6 @@ public class Member {
     private String state = "DEFAULT State";
     private String zipCode = "DEFAULT Zip Code";
     private Date membershipStartDate;
-    private Date membershipEndDate;
 
     /**
      * Gets the member ID.
@@ -275,16 +274,4 @@ public class Member {
      *
      * @return The membership end date of the member.
      */
-    public Date getMembershipEndDate() {
-        return membershipEndDate;
-    }
-
-      /**
-     * Sets the membership end date of the member.
-     *
-     * @param membershipEndDate The membership end date of the member.
-     */
-    public void setMembershipEndDate(Date membershipEndDate) {
-        this.membershipEndDate = membershipEndDate;
-    }
 }

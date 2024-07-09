@@ -212,7 +212,6 @@ The members table stores information about the library members.
 | state_db | VARCHAR(100) | | The state where the member resides. |
 | zip_code | VARCHAR(20) | | The zip code of the member's address. |
 | membership_start_date | DATE | NOT NULL | The date when the member's membership starts. |
-| membership_end_date | DATE | | The date when the member's membership ends (can be NULL if ongoing). |
 | created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | The timestamp indicating when the member record was created. |
 | updated_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | The timestamp indicating when the member record was last updated. |
 
