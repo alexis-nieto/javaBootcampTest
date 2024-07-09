@@ -12,7 +12,7 @@ import com.jbt.db.containers.Member;
 import com.jbt.sysout.CommonPrinter;
 import com.jbt.sysout.printers.MemberPrinter;
 
-public class Loan {
+public class Loans {
 
     private final String DB_URL = Config.getConfig("database_url") + Config.getConfig("database_name");
     private final String DB_USER = Config.getConfig("username");
