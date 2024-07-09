@@ -42,7 +42,6 @@ public class Book {
         return sb.toString();
     }
 
-    // Getters and Setters
     /**
              * Gets the ISBN of the book.
              *

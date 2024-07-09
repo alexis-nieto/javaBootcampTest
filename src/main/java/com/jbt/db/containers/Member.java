@@ -1,5 +1,7 @@
 package com.jbt.db.containers;
 
+import java.util.Date;
+
 /**
  * Represents a member with various attributes such as member ID, first name, last name, phone number,
  * email, address, city, state, zip code, membership start date, and membership end date.
@@ -13,14 +15,13 @@ public class Member {
     private String lastName = "DEFAULT Last Name";
     private String phoneNumber = "DEFAULT Phone Number";
     private String email = "DEFAULT Email";
-    private String address = "DEFAULT Address";
+    private String address_db = "DEFAULT Address";
     private String city = "DEFAULT City";
     private String state = "DEFAULT State";
     private String zipCode = "DEFAULT Zip Code";
-    private String membershipStartDate = "DEFAULT Membership Start Date";
-    private String membershipEndDate = "DEFAULT Membership End Date";
+    private Date membershipStartDate;
+    private Date membershipEndDate;
 
-    // Getters and Setters
     /**
      * Gets the member ID.
      *
@@ -152,7 +153,7 @@ public class Member {
      * @return The address of the member.
      */
     public String getAddress() {
-        return address;
+        return address_db;
     }
 
     /**
@@ -163,7 +164,7 @@ public class Member {
      */
     public void setAddress(String address) {
         if (address == null || address.length() <= 255) {
-            this.address = address;
+            this.address_db = address;
         } else {
             throw new IllegalArgumentException(
                 "Address must be null or have a maximum length of 255 characters."
@@ -204,6 +205,7 @@ public class Member {
     public String getState() {
         return state;
     }
+    
       /**
      * Sets the state of the member.
      *
@@ -273,15 +275,16 @@ public class Member {
      *
      * @return The membership end date of the member.
      */
-      public Date getMembershipEndDate() {
-          return membershipEndDate;
-      }
+    public Date getMembershipEndDate() {
+        return membershipEndDate;
+    }
 
       /**
      * Sets the membership end date of the member.
      *
      * @param membershipEndDate The membership end date of the member.
      */
-      public void setMembershipEndDate(Date membershipEndDate) {
-          this.membershipEndDate = membershipEndDate;
-      }
+    public void setMembershipEndDate(Date membershipEndDate) {
+        this.membershipEndDate = membershipEndDate;
+    }
+}

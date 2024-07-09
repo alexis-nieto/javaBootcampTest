@@ -1,25 +1,26 @@
 package com.jbt.sysout.printers;
 
-import com.jbt.db.containers.Book;
+import com.jbt.db.containers.Member;
 
 public class MemberPrinter {
 
-    public static void printBookDetails(Book book) {
-        System.out.println("ISBN: " + book.getIsbn());
-        System.out.println("Title: " + book.getTitle());
-        System.out.println("Author: " + book.getAuthor());
-        System.out.println("Publisher: " + book.getPublisher());
-        System.out.println("Publication Year: " + book.getPublicationYear());
-        System.out.println("Page Count: " + book.getPageCount());
-        System.out.println("Stock Quantity: " + book.getStockQuantity());
-        System.out.println("Genre: " + book.getGenre());
-        System.out.println("Language: " + book.getLanguage());
+    public static void printMemberDetails(Member member) {
+        System.out.println("Member ID: " + member.getMemberId());
+        System.out.println("First Name: " + member.getFirstName());
+        System.out.println("Last Name: " + member.getLastName());
+        System.out.println("Phone Number: " + member.getPhoneNumber());
+        System.out.println("Email: " + member.getEmail());
+        System.out.println("Address: " + member.getAddress());
+        System.out.println("City: " + member.getCity());
+        System.out.println("State: " + member.getState());
+        System.out.println("Zip Code: " + member.getZipCode());
+        System.out.println("Membership Start Date: " + member.getMembershipStartDate());
     }
 
     public static void printSuccess(String attribute, String field, String event){
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Book with ");
+        sb.append("Member with ");
         sb.append(attribute);
         sb.append(": '");
         sb.append(field);
