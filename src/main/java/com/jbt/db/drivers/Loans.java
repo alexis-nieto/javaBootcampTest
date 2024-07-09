@@ -9,8 +9,8 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 import com.jbt.db.Config;
 import com.jbt.db.containers.Loan;
-import com.jbt.sysout.CommonPrinter;
-import com.jbt.sysout.printers.LoanPrinter;
+import com.jbt.sysout.PrinterCommon;
+import com.jbt.sysout.printers.drivers.PrinterDriverLoan;
 
 public class Loans {
 
@@ -41,7 +41,7 @@ public class Loans {
 
         ps.executeUpdate();
 
-        LoanPrinter.printSuccess("book", loan.getIsbn(), "added");
+        PrinterDriverLoan.printSuccess("book", loan.getIsbn(), "added");
 
         } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("Task Failed:\nA loan with the same ID already exists in the database.\n");
@@ -67,7 +67,7 @@ public class Loans {
 
         ps.executeUpdate();
 
-        LoanPrinter.printSuccess("Loan ID", String.valueOf(loan.getLoanId()), "deleted");
+        PrinterDriverLoan.printSuccess("Loan ID", String.valueOf(loan.getLoanId()), "deleted");
   
         } catch (SQLException e) {
             System.out.println("Task Failed:\nThere was an error deleting the loan from the database.\n");
@@ -107,7 +107,7 @@ public class Loans {
 
         ps.executeUpdate();
 
-        LoanPrinter.printSuccess("Loan ID", String.valueOf(loan.getLoanId()), "updated");
+        PrinterDriverLoan.printSuccess("Loan ID", String.valueOf(loan.getLoanId()), "updated");
 
         } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("Task Failed:\nThe loan ID already exists in the database, please try with a different one.\n");
@@ -157,12 +157,12 @@ public class Loans {
                 loan.setActualReturnDate(rs.getDate("actual_return_date"));
                 loan.setStatus(rs.getString("status_db"));
 
-                CommonPrinter.printSeparator();
-                LoanPrinter.printLoanDetails(loan);
+                PrinterCommon.printSeparator();
+                PrinterDriverLoan.printLoanDetails(loan);
 
             }
 
-            CommonPrinter.printSeparator();
+            PrinterCommon.printSeparator();
 
         } catch (Exception e) {
             System.out.println("Task Failed:\nAn error occurred while retrieving the loans from the database.\n");

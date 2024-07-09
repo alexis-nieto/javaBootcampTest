@@ -9,8 +9,8 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 import com.jbt.db.Config;
 import com.jbt.db.containers.Member;
-import com.jbt.sysout.CommonPrinter;
-import com.jbt.sysout.printers.MemberPrinter;
+import com.jbt.sysout.PrinterCommon;
+import com.jbt.sysout.printers.drivers.PrinterDriverMember;
 
 public class Members {
 
@@ -63,7 +63,7 @@ public class Members {
 
         ps.executeUpdate();
 
-        MemberPrinter.printSuccess("Email", member.getEmail() , "added");
+        PrinterDriverMember.printSuccess("Email", member.getEmail() , "added");
 
         } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("Task Failed:\nA member with the same email already exists in the database.\n");
@@ -96,7 +96,7 @@ public class Members {
 
         ps.executeUpdate();
 
-        MemberPrinter.printSuccess("Member ID", String.valueOf(member.getMemberId()) , "deleted");
+        PrinterDriverMember.printSuccess("Member ID", String.valueOf(member.getMemberId()) , "deleted");
   
         } catch (SQLException e) {
             System.out.println("Task Failed:\nThere was an error deleting the member from the database.\n");
@@ -141,7 +141,7 @@ public class Members {
 
         ps.executeUpdate();
 
-        MemberPrinter.printSuccess("Member ID", String.valueOf(member.getMemberId()) , "updated");
+        PrinterDriverMember.printSuccess("Member ID", String.valueOf(member.getMemberId()) , "updated");
 
         } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("Task Failed:\nThe email already exists in the database, please try with a different one.\n");
@@ -203,12 +203,12 @@ public class Members {
                 member.setZipCode(rs.getString("zip_code"));
                 member.setMembershipStartDate(rs.getDate("membership_start_date"));
 
-                CommonPrinter.printSeparator();
-                MemberPrinter.printMemberDetails(member);
+                PrinterCommon.printSeparator();
+                PrinterDriverMember.printMemberDetails(member);
 
             }
 
-            CommonPrinter.printSeparator();
+            PrinterCommon.printSeparator();
 
         } catch (Exception e) {
             System.out.println("Task Failed:\nAn error occurred while retrieving the books from the database.\n");
