@@ -12,6 +12,8 @@ public class Main {
 
         Config.initConfig();
 
+        //MainTests.test_updateBook();
+
         MenuMain.displayMainMenu();
         
         MenuMain.displayExitMessage();

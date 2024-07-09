@@ -52,7 +52,7 @@ public class MainTests {
     public static void test_updateBook() {
         Books bookDB = new Books();
         Book book = new Book();
-        book.setIsbn("9780061124654");
+        book.setIsbn("9780141036145");
         book.setTitle("Updated Book Title");
         book.setAuthor("Updated Author Name");
         book.setPublisher("Updated Publisher Name");

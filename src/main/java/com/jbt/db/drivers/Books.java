@@ -94,7 +94,7 @@ public class Books {
     public void updateBook(Book book) {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("UPDATE books SET");
+        sb.append("UPDATE books SET ");
         sb.append("title = ?, ");
         sb.append("author = ?, ");
         sb.append("publisher = ?, ");
@@ -130,7 +130,7 @@ public class Books {
         PrinterDriverBook.printSuccess("ISBN", book.getIsbn() , "updated");
 
         } catch (SQLException e) {
-            System.out.println("Task Failed:\nThere was an error adding the book to the database.\n");
+            System.out.println("Task Failed:\nThere was an error updating the book on the database.\n");
             //e.printStackTrace();
         }
     }

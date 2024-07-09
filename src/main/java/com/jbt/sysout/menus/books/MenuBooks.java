@@ -22,10 +22,14 @@ public class MenuBooks {
 
             switch (choice) {
                 case "1":
+                    // Add Book
+                    PrinterCommon.clearScreen();
                     MenuBookAdd.addNewBook();
                     break;
                 case "2":
                     // Update Book
+                    PrinterCommon.clearScreen();
+                    MenuBookUpdate.updateBook();
                     break;
                 case "3":
                     // Delete Book

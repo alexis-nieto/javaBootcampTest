@@ -12,8 +12,6 @@ public class MenuBookAdd {
 
     public static void addNewBook() {
 
-        PrinterCommon.clearScreen();
-
         System.out.println(">>> Adding new Book");
 
         Books books = new Books();
