@@ -28,7 +28,7 @@ public class Members {
     public void addMember(Member member) {
 
         String SQL = "INSERT INTO members (first_name, last_name, phone_number, email, address_db, city, state_db, zip_code, membership_start_date) " +
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         /*
             1) first_name
@@ -70,11 +70,10 @@ public class Members {
             //e.printStackTrace();
         } catch (SQLException e) {
             System.out.println("Task Failed:\nThere was an unknown error adding the member to the database.\n");
-            //e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
-    
     /**
          * Deletes a member from the database based on their member ID.
          * 
@@ -116,9 +115,9 @@ public class Members {
         sb.append("address_db = ?, ");
         sb.append("city = ?, ");
         sb.append("state_db = ?, ");
-        sb.append("zip_code = ?, ");
-        sb.append("membership_start_date = ? ");
+        sb.append("zip_code = ? ");
         sb.append("WHERE member_id = ?;");
+        
         //System.out.println(sb.toString());
         
         try (
@@ -138,16 +137,18 @@ public class Members {
         ps.setString(6, member.getCity());
         ps.setString(7, member.getState());
         ps.setString(8, member.getZipCode());
-        ps.setDate(9, new java.sql.Date(member.getMembershipStartDate().getTime()));
-        ps.setInt(10, member.getMemberId());
+        ps.setInt(9, member.getMemberId());
 
         ps.executeUpdate();
 
         MemberPrinter.printSuccess("Member ID", String.valueOf(member.getMemberId()) , "updated");
 
+        } catch (SQLIntegrityConstraintViolationException e) {
+            System.out.println("Task Failed:\nThe email already exists in the database, please try with a different one.\n");
+            //e.printStackTrace();
         } catch (SQLException e) {
             System.out.println("Task Failed:\nThere was an error updating the member in the database.\n");
-            //e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -211,7 +212,7 @@ public class Members {
 
         } catch (Exception e) {
             System.out.println("Task Failed:\nAn error occurred while retrieving the books from the database.\n");
-            //e.printStackTrace();
+            e.printStackTrace();
         }
         //System.out.println("END");
     }

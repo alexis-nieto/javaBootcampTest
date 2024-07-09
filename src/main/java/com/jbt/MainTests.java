@@ -1,7 +1,9 @@
 package com.jbt;
 
 import com.jbt.db.containers.Book;
+import com.jbt.db.containers.Member;
 import com.jbt.db.drivers.Books;
+import com.jbt.db.drivers.Members;
 
 public class MainTests {
 
@@ -57,4 +59,56 @@ public class MainTests {
         bookDB.updateBook(book);
     }
     
+    public static void test_getMembers() {
+
+        Members members = new Members();
+		members.getMembers("all","all");
+		//bookDB.getBooks();
+
+    }
+
+    public static void test_deleteMember() {
+
+        Members members = new Members();
+		Member member = new Member();
+		member.setMemberId(5);
+		members.deleteMember(member);
+
+    }
+
+    public static void test_addMember(){
+
+    	Members memberDB = new Members();
+		Member member = new Member();
+
+		member.setFirstName("Arturo");
+		member.setLastName("Nieto");
+		member.setPhoneNumber("639-130-5516");
+		member.setEmail("arturo@nieto.onl");
+		member.setAddress("Avenida 1ra Nte 1509");
+		member.setCity("Delicias");
+		member.setState("CUU");
+		member.setZipCode("33000");
+		member.setMembershipStartDate(new java.util.Date());
+
+		memberDB.addMember(member);
+
+    }
+
+    public static void test_updateMember() {
+        Members memberDB = new Members();
+        Member member = new Member();
+        member.setMemberId(4);
+        member.setFirstName("Updated First Name");
+        member.setLastName("Updated Last Name");
+        member.setEmail("updated3@example.com");
+        member.setPhoneNumber("1234567890");
+        member.setAddress("Updated Address");
+        member.setCity("Updated City");
+        member.setState("Updated State");
+        member.setZipCode("12345");
+
+        memberDB.updateMember(member);
+    }
+
 }
