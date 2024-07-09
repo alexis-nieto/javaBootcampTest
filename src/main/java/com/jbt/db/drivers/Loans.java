@@ -18,25 +18,11 @@ public class Loans {
     private final String DB_USER = Config.getConfig("username");
     private final String DB_PASS = Config.getConfig("password");
 
-    /**
-         * Adds a loan to the database.
-         * 
-         * @param loan The loan to add to the database.
-         * @throws SQLIntegrityConstraintViolationException if a loan with the same member_id and isbn already exists in the database.
-         * @throws SQLException if there is an error adding the loan to the database.
-         */
     public void addLoan(Loan loan) {
 
-        String SQL = "INSERT INTO loans (member_id, isbn, loan_date, return_due_date) " +
-        "VALUES (?, ?, ?, ?)";
+        String SQL = "INSERT INTO loans (member_id, isbn, loan_date, return_due_date, actual_return_date, status_db) " +
+        "VALUES (?, ?, ?, ?, ?, ?)";
         
-        /*
-            1) member_id
-            2) isbn
-            3) loan_date
-            4) return_due_date
-        */
-
         try (
             Connection conn = DriverManager.getConnection(
                 this.DB_URL,
@@ -50,26 +36,21 @@ public class Loans {
         ps.setString(2, loan.getIsbn());
         ps.setDate(3, new java.sql.Date(loan.getLoanDate().getTime()));
         ps.setDate(4, new java.sql.Date(loan.getReturnDueDate().getTime()));
+        ps.setDate(5, loan.getActualReturnDate() != null ? new java.sql.Date(loan.getActualReturnDate().getTime()) : null);
+        ps.setString(6, loan.getStatus());
 
         ps.executeUpdate();
 
-        LoanPrinter.printSuccess("Loan ID", String.valueOf(loan.getLoanId()) , "added");
+        LoanPrinter.printSuccess("Loan ID", String.valueOf(loan.getLoanId()), "added");
 
         } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("Task Failed:\nA loan with the same member_id and isbn already exists in the database.\n");
-            //e.printStackTrace();
+            System.out.println("Task Failed:\nA loan with the same ID already exists in the database.\n");
         } catch (SQLException e) {
             System.out.println("Task Failed:\nThere was an unknown error adding the loan to the database.\n");
             e.printStackTrace();
         }
     }
 
-    /**
-         * Deletes a loan from the database based on its loan ID.
-         * 
-         * @param loan The loan object to be deleted from the database.
-         * @throws SQLException if there is an error deleting the loan from the database.
-         */
     public void deleteLoan(Loan loan) {
         String SQL = "DELETE FROM loans WHERE loan_id = ?;";
 
@@ -86,11 +67,10 @@ public class Loans {
 
         ps.executeUpdate();
 
-        LoanPrinter.printSuccess("Loan ID", String.valueOf(loan.getLoanId()) , "deleted");
+        LoanPrinter.printSuccess("Loan ID", String.valueOf(loan.getLoanId()), "deleted");
   
         } catch (SQLException e) {
             System.out.println("Task Failed:\nThere was an error deleting the loan from the database.\n");
-            //e.printStackTrace();
         }
     }
 
@@ -105,8 +85,6 @@ public class Loans {
         sb.append("actual_return_date = ?, ");
         sb.append("status_db = ? ");
         sb.append("WHERE loan_id = ?;");
-        
-        //System.out.println(sb.toString());
         
         try (
             Connection conn = DriverManager.getConnection(
@@ -127,23 +105,16 @@ public class Loans {
 
         ps.executeUpdate();
 
-        LoanPrinter.printSuccess("Loan ID", String.valueOf(loan.getLoanId()) , "updated");
+        LoanPrinter.printSuccess("Loan ID", String.valueOf(loan.getLoanId()), "updated");
 
         } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("Task Failed:\nThe loan already exists in the database, please try with a different one.\n");
-            //e.printStackTrace();
+            System.out.println("Task Failed:\nThe loan ID already exists in the database, please try with a different one.\n");
         } catch (SQLException e) {
             System.out.println("Task Failed:\nThere was an error updating the loan in the database.\n");
             e.printStackTrace();
         }
     }
 
-    /**
-         * Retrieves loans from the database based on the specified attribute and field.
-         *
-         * @param attribute The attribute to search for (e.g., "member_id", "isbn", "all").
-         * @param field The value of the attribute to search for.
-         */
     public void getLoans(String attribute, String field) {
 
         StringBuilder sql = new StringBuilder();
@@ -160,8 +131,6 @@ public class Loans {
             sql.append(field);
             sql.append("%\");");
         }
-
-        //System.out.println(sql.toString());
 
         try (
             Connection conn = DriverManager.getConnection(
@@ -197,12 +166,8 @@ public class Loans {
             System.out.println("Task Failed:\nAn error occurred while retrieving the loans from the database.\n");
             e.printStackTrace();
         }
-        //System.out.println("END");
     }
 
-    /**
-         * Get all loans by passing no arguments.
-         */
     public void getLoans() {
         getLoans("all", "all");
     }

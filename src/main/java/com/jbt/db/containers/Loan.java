@@ -3,21 +3,21 @@ package com.jbt.db.containers;
 import java.util.Date;
 
 public class Loan {
-    private int loanId = 0;
-    private int bookId = 0;
-    private int branchId = 0;
-    private int cardNo = 0;
-    private Date dateOut;
-    private Date dueDate;
-    private Date dateIn;
+    private int loan_id = 0;
+    private int member_id = 0;
+    private String isbn = "";
+    private Date loan_date;
+    private Date return_due_date;
+    private Date actual_return_date;
+    private String status_db = "active";
 
     public int getLoanId() {
-        return loanId;
+        return loan_id;
     }
 
-    public void setLoanId(int loanId) {
-        if (loanId >= 0) {
-            this.loanId = loanId;
+    public void setLoanId(int loan_id) {
+        if (loan_id >= 0) {
+            this.loan_id = loan_id;
         } else {
             throw new IllegalArgumentException(
                 "Loan ID must be a non-negative integer."
@@ -25,77 +25,73 @@ public class Loan {
         }
     }
 
-    public int getBookId() {
-        return bookId;
+    public int getMemberId() {
+        return member_id;
     }
 
-    public void setBookId(int bookId) {
-        if (bookId >= 0) {
-            this.bookId = bookId;
+    public void setMemberId(int member_id) {
+        if (member_id >= 0) {
+            this.member_id = member_id;
         } else {
             throw new IllegalArgumentException(
-                "Book ID must be a non-negative integer."
+                "Member ID must be a non-negative integer."
             );
         }
     }
 
-    public int getBranchId() {
-        return branchId;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setBranchId(int branchId) {
-        if (branchId >= 0) {
-            this.branchId = branchId;
+    public void setIsbn(String isbn) {
+        if (isbn != null && !isbn.isEmpty()) {
+            this.isbn = isbn;
         } else {
-            throw new IllegalArgumentException(
-                "Branch ID must be a non-negative integer."
-            );
+            throw new IllegalArgumentException("ISBN must not be null or empty.");
         }
     }
 
-    public int getCardNo() {
-        return cardNo;
+    public Date getLoanDate() {
+        return loan_date;
     }
 
-    public void setCardNo(int cardNo) {
-        if (cardNo >= 0) {
-            this.cardNo = cardNo;
+    public void setLoanDate(Date loan_date) {
+        if (loan_date != null) {
+            this.loan_date = loan_date;
         } else {
-            throw new IllegalArgumentException(
-                "Card number must be a non-negative integer."
-            );
+            throw new IllegalArgumentException("Loan date must not be null.");
         }
     }
 
-    public Date getDateOut() {
-        return dateOut;
+    public Date getReturnDueDate() {
+        return return_due_date;
     }
 
-    public void setDateOut(Date dateOut) {
-        if (dateOut != null) {
-            this.dateOut = dateOut;
+    public void setReturnDueDate(Date return_due_date) {
+        if (return_due_date != null) {
+            this.return_due_date = return_due_date;
         } else {
-            throw new IllegalArgumentException("Date out must not be null.");
+            throw new IllegalArgumentException("Return due date must not be null.");
         }
     }
 
-    public Date getDueDate() {
-        return dueDate;
+    public Date getActualReturnDate() {
+        return actual_return_date;
     }
 
-    public void setDueDate(Date dueDate) {
-        if (dueDate != null) {
-            this.dueDate = dueDate;
+    public void setActualReturnDate(Date actual_return_date) {
+        this.actual_return_date = actual_return_date;
+    }
+
+    public String getStatus() {
+        return status_db;
+    }
+
+    public void setStatus(String status_db) {
+        if (status_db != null && (status_db.equals("active") || status_db.equals("returned"))) {
+            this.status_db = status_db;
         } else {
-            throw new IllegalArgumentException("Due date must not be null.");
+            throw new IllegalArgumentException("Status must be either 'active' or 'returned'.");
         }
-    }
-
-    public Date getDateIn() {
-        return dateIn;
-    }
-
-    public void setDateIn(Date dateIn) {
-        this.dateIn = dateIn;
     }
 }

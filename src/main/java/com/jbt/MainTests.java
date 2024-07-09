@@ -3,6 +3,7 @@ package com.jbt;
 import com.jbt.db.containers.Book;
 import com.jbt.db.containers.Member;
 import com.jbt.db.drivers.Books;
+import com.jbt.db.drivers.Loans;
 import com.jbt.db.drivers.Members;
 
 public class MainTests {
@@ -111,6 +112,11 @@ public class MainTests {
         memberDB.updateMember(member);
     }
 
-    
+    public static void test_getLoans() {
 
+        Loans loans = new Loans();
+        //loans.getLoans("all","all");
+        loans.getLoans();
+
+    }
 }
