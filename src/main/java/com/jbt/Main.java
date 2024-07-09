@@ -10,7 +10,9 @@ public class Main {
 		
 		Config.initConfig();
 
-		MainTests.test_getLoans();
+		MainTests.test_addMember();
+
+		MainTests.test_updateLoan();
 
 	}
 

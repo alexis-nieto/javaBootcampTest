@@ -41,7 +41,7 @@ public class Loans {
 
         ps.executeUpdate();
 
-        LoanPrinter.printSuccess("Loan ID", String.valueOf(loan.getLoanId()), "added");
+        LoanPrinter.printSuccess("book", loan.getIsbn(), "added");
 
         } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("Task Failed:\nA loan with the same ID already exists in the database.\n");
@@ -85,6 +85,8 @@ public class Loans {
         sb.append("actual_return_date = ?, ");
         sb.append("status_db = ? ");
         sb.append("WHERE loan_id = ?;");
+
+        System.out.println(loan.getStatus());
         
         try (
             Connection conn = DriverManager.getConnection(

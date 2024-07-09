@@ -1,6 +1,11 @@
 package com.jbt;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+
 import com.jbt.db.containers.Book;
+import com.jbt.db.containers.Loan;
 import com.jbt.db.containers.Member;
 import com.jbt.db.drivers.Books;
 import com.jbt.db.drivers.Loans;
@@ -115,8 +120,67 @@ public class MainTests {
     public static void test_getLoans() {
 
         Loans loans = new Loans();
-        //loans.getLoans("all","all");
-        loans.getLoans();
+        loans.getLoans("return_due_date","2023-05-19");
+        loans.getLoans("status_db","returned");
+        //loans.getLoans();
 
     }
+
+    public static void test_addLoan(){
+
+    	Loans loans = new Loans();
+		Loan loan = new Loan();
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        loan.setIsbn("56");
+		loan.setMemberId(1);
+		loan.setLoanDate(new java.util.Date());
+
+        try {
+
+            loan.setReturnDueDate( df.parse("2024-12-15") );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+		loans.addLoan(loan);
+
+    }
+
+    public static void test_deleteLoan() {
+
+        Loans loans = new Loans();
+        Loan loan = new Loan();
+        loan.setLoanId(7);
+        loans.deleteLoan(loan);
+
+    }
+
+    public static void test_updateLoan() {
+
+        Loans loans = new Loans();
+        Loan loan = new Loan();
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        loan.setLoanId(4);
+        loan.setIsbn("666");
+        loan.setMemberId(9);
+        loan.setStatus("returned");
+
+        try {
+
+            loan.setLoanDate( df.parse("2024-07-05") );
+            loan.setReturnDueDate( df.parse("2024-07-10") );
+            loan.setActualReturnDate( df.parse("2024-07-07") );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        loans.updateLoan(loan);
+    }
+
 }
