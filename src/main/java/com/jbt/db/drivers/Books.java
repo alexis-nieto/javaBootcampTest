@@ -9,8 +9,8 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 import com.jbt.db.Config;
 import com.jbt.db.containers.Book;
-import com.jbt.sysout.CommonPrinter;
-import com.jbt.sysout.printers.BookPrinter;
+import com.jbt.sysout.PrinterCommon;
+import com.jbt.sysout.printers.drivers.PrinterDriverBook;
 
 public class Books {
 
@@ -63,7 +63,7 @@ public class Books {
 
         ps.executeUpdate();
 
-        BookPrinter.printSuccess("ISBN", book.getIsbn() , "added");
+        PrinterDriverBook.printSuccess("ISBN", book.getIsbn() , "added");
 
         } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("Task Failed:\nA book with the same ISBN already exists in the database.\n");
@@ -97,7 +97,7 @@ public class Books {
 
         ps.executeUpdate();
 
-        BookPrinter.printSuccess("ISBN", book.getIsbn() , "deleted");
+        PrinterDriverBook.printSuccess("ISBN", book.getIsbn() , "deleted");
   
         } catch (SQLException e) {
             System.out.println("Task Failed:\nThere was an error deleting the book from the database.\n");
@@ -141,7 +141,7 @@ public class Books {
 
         ps.executeUpdate();
 
-        BookPrinter.printSuccess("ISBN", book.getIsbn() , "updated");
+        PrinterDriverBook.printSuccess("ISBN", book.getIsbn() , "updated");
 
         } catch (SQLException e) {
             System.out.println("Task Failed:\nThere was an error adding the book to the database.\n");
@@ -199,12 +199,12 @@ public class Books {
                 book.setGenre(rs.getString("genre"));
                 book.setLanguage(rs.getString("language_db"));
 
-                CommonPrinter.printSeparator();
-                BookPrinter.printBookDetails(book);
+                PrinterCommon.printSeparator();
+                PrinterDriverBook.printBookDetails(book);
 
             }
 
-            CommonPrinter.printSeparator();
+            PrinterCommon.printSeparator();
 
         } catch (Exception e) {
             System.out.println("Task Failed:\nAn error occurred while retrieving the books from the database.\n");

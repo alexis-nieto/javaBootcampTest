@@ -1,8 +1,8 @@
-package com.jbt.sysout.printers;
+package com.jbt.sysout.printers.drivers;
 
 import com.jbt.db.containers.Member;
 
-public class MemberPrinter {
+public class PrinterDriverMember {
 
     public static void printMemberDetails(Member member) {
         System.out.println("Member ID: " + member.getMemberId());

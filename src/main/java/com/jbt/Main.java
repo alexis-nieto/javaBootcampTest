@@ -1,23 +1,21 @@
 package com.jbt;
 
 import com.jbt.db.Config;
+import com.jbt.sysout.PrinterCommon;
 import com.jbt.sysout.menus.MenuMain;
 
 public class Main {
-	
-	public static void main(String[] args) {
-		
-		//System.out.println("Starting Book Management Application...");
 
-		// Bootstrap config file.		
-		Config.initConfig();
+    public static void main(String[] args) {
 
-		// Star the main menu
-		MenuMain.displayMainMenu();
+        PrinterCommon.clearScreen();
 
-		// Bye!
-		MenuMain.displayExitMessage();
+        Config.initConfig();
 
-	}
+        MenuMain.displayMainMenu();
+        
+        MenuMain.displayExitMessage();
+
+    }
 
 }

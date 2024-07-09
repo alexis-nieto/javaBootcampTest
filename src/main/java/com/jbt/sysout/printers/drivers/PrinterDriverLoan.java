@@ -1,8 +1,8 @@
-package com.jbt.sysout.printers;
+package com.jbt.sysout.printers.drivers;
 
 import com.jbt.db.containers.Loan;
 
-public class LoanPrinter {
+public class PrinterDriverLoan {
 
     public static void printLoanDetails(Loan loan) {
         System.out.println("Loan ID: " + loan.getLoanId());

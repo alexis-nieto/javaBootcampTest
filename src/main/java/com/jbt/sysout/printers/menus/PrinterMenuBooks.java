@@ -3,8 +3,9 @@ package com.jbt.sysout.printers.menus;
 public class PrinterMenuBooks {
 
     public static void printBookMenu() {
+
         StringBuilder sb = new StringBuilder();
-        sb.append("\nBook Management Menu:\n");
+        sb.append("--- Book Management Menu ---\n");
         sb.append("1. Add Book\n");
         sb.append("2. Update Book\n");
         sb.append("3. Delete Book\n");

@@ -1,8 +1,8 @@
-package com.jbt.sysout.printers;
+package com.jbt.sysout.printers.drivers;
 
 import com.jbt.db.containers.Book;
 
-public class BookPrinter {
+public class PrinterDriverBook {
 
     public static void printBookDetails(Book book) {
         System.out.println("ISBN: " + book.getIsbn());
