@@ -150,13 +150,24 @@ public class Books {
 
     public void getBooks(String attribute, String field) {
 
+
+
         StringBuilder sql = new StringBuilder();
 
-        sql.append("SELECT * FROM books WHERE ");
-        sql.append(attribute);
-        sql.append(" LIKE LOWER(\"%");
-        sql.append(field);
-        sql.append("%\");");
+        if (attribute.equalsIgnoreCase("all") && field.equalsIgnoreCase("all")) {
+
+            sql.append("SELECT * FROM books;");
+
+        } else {
+
+            sql.append("SELECT * FROM books WHERE ");
+            sql.append(attribute);
+            sql.append(" LIKE LOWER(\"%");
+            sql.append(field);
+            sql.append("%\");");
+        }
+
+
 
         //System.out.println(sql.toString());
 
@@ -173,32 +184,35 @@ public class Books {
 
             while (rs.next()) {
 
-                StringBuilder sb = new StringBuilder();
-                sb.append("\n<<>><<>><<>><<>><<>><<>><<>><<>>\n\n");
-                sb.append("ISBN: ").append(rs.getString("isbn")).append("\n");
-                sb.append("Title: ").append(rs.getString("title")).append("\n");
-                sb.append("Author: ").append(rs.getString("author")).append("\n");
-                sb.append("Publisher: ").append(rs.getString("publisher")).append("\n");
-                sb.append("Publication Year: ").append(rs.getString("publication_year")).append("\n");
-                sb.append("Page Count: ").append(rs.getString("page_count")).append("\n");
-                sb.append("Stock Quantity: ").append(rs.getString("stock_quantity")).append("\n");
-                sb.append("Genre: ").append(rs.getString("genre")).append("\n");
-                sb.append("Language: ").append(rs.getString("language_db"));
-                
-                System.out.println(sb.toString());
+                Book book = new Book();
+
+                book.setIsbn(rs.getString("isbn"));
+                book.setTitle(rs.getString("title"));
+                book.setAuthor(rs.getString("author"));
+                book.setPublisher(rs.getString("publisher"));
+                book.setPublicationYear(rs.getInt("publication_year"));
+                book.setPageCount(rs.getInt("page_count"));
+                book.setStockQuantity(rs.getInt("stock_quantity"));
+                book.setGenre(rs.getString("genre"));
+                book.setLanguage(rs.getString("language_db"));
+
+                BookPrinter.printSeparator();
+                BookPrinter.printBookDetails(book);
+
             }
-            System.out.println("\n<<>><<>><<>><<>><<>><<>><<>><<>>\n");
+
+            BookPrinter.printSeparator();
 
         } catch (Exception e) {
-            System.out.println("An error occurred while retrieving the books from the database.");
-            e.printStackTrace();
+            System.out.println("Task Failed:\nAn error occurred while retrieving the books from the database.\n");
+            //e.printStackTrace();
         }
         //System.out.println("END");
     }
 
 
-
-    public void getAllBooks() {
+    // Get all books by passing no arguemts.
+    public void getBooks() {
 
         String SQL = "SELECT * FROM books";
 
@@ -213,21 +227,24 @@ public class Books {
         ) {
             while (rs.next()) {
 
-                StringBuilder sb = new StringBuilder();
-                sb.append("\n<<>><<>><<>><<>><<>><<>><<>><<>>\n\n");
-                sb.append("ISBN: ").append(rs.getString("isbn")).append("\n");
-                sb.append("Title: ").append(rs.getString("title")).append("\n");
-                sb.append("Author: ").append(rs.getString("author")).append("\n");
-                sb.append("Publisher: ").append(rs.getString("publisher")).append("\n");
-                sb.append("Publication Year: ").append(rs.getString("publication_year")).append("\n");
-                sb.append("Page Count: ").append(rs.getString("page_count")).append("\n");
-                sb.append("Stock Quantity: ").append(rs.getString("stock_quantity")).append("\n");
-                sb.append("Genre: ").append(rs.getString("genre")).append("\n");
-                sb.append("Language: ").append(rs.getString("language_db"));
-                
-                System.out.println(sb.toString());
+                Book book = new Book();
+
+                book.setIsbn(rs.getString("isbn"));
+                book.setTitle(rs.getString("title"));
+                book.setAuthor(rs.getString("author"));
+                book.setPublisher(rs.getString("publisher"));
+                book.setPublicationYear(rs.getInt("publication_year"));
+                book.setPageCount(rs.getInt("page_count"));
+                book.setStockQuantity(rs.getInt("stock_quantity"));
+                book.setGenre(rs.getString("genre"));
+                book.setLanguage(rs.getString("language_db"));
+
+                BookPrinter.printSeparator();
+                BookPrinter.printBookDetails(book);
+
             }
-            System.out.println("\n<<>><<>><<>><<>><<>><<>><<>><<>>\n");
+
+            BookPrinter.printSeparator();
 
         } catch (Exception e) {
             System.out.println("An error occurred while retrieving the books from the database.");

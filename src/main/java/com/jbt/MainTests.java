@@ -5,14 +5,6 @@ import com.jbt.db.drivers.Books;
 
 public class MainTests {
 
-    public static void test_getAllBooks(){
-
-    		Books bookDB = new Books();
-
-		bookDB.getAllBooks();
-
-    }
-
     public static void test_addBook(){
 
     	Books bookDB = new Books();
@@ -44,7 +36,8 @@ public class MainTests {
     public static void test_getBooks() {
 
         Books bookDB = new Books();
-		bookDB.getBooks("language_db","glish");
+		bookDB.getBooks("all","all");
+		//bookDB.getBooks();
 
     }
 

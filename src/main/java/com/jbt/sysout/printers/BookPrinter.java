@@ -1,10 +1,10 @@
 package com.jbt.sysout.printers;
 
+import com.jbt.db.containers.Book;
+
 public class BookPrinter {
 
-
-/*
-    protected void printBookDetails(Book book) {
+    public static void printBookDetails(Book book) {
         System.out.println("ISBN: " + book.getIsbn());
         System.out.println("Title: " + book.getTitle());
         System.out.println("Author: " + book.getAuthor());
@@ -14,9 +14,8 @@ public class BookPrinter {
         System.out.println("Stock Quantity: " + book.getStockQuantity());
         System.out.println("Genre: " + book.getGenre());
         System.out.println("Language: " + book.getLanguage());
-    }*/
+    }
 
-    
     public static void printSuccess(String attribute, String field, String event){
 
         StringBuilder sb = new StringBuilder();
@@ -28,6 +27,10 @@ public class BookPrinter {
         sb.append(event);
         sb.append(" successfully.");
         System.out.println(sb.toString());
+    }
+
+    public static void printSeparator() {
+        System.out.println("\n<<>><<>><<>><<>><<>><<>><<>><<>>\n");
     }
 
 }
