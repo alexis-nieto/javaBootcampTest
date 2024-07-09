@@ -16,7 +16,7 @@ public class MainTests {
 		book.setPublisher("USSR Ministry of Culture");
 		book.setPublicationYear(1952);
 		book.setPageCount(132);
-		book.setStockQuantity(564);
+		book.setStockQuantity(7);
 		book.setGenre("Politics");
 		book.setLanguage("Russian");
 
@@ -36,7 +36,7 @@ public class MainTests {
     public static void test_getBooks() {
 
         Books bookDB = new Books();
-		bookDB.getBooks("all","all");
+		bookDB.getBooks("author","scott");
 		//bookDB.getBooks();
 
     }

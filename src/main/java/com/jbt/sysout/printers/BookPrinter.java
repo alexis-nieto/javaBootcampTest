@@ -29,8 +29,4 @@ public class BookPrinter {
         System.out.println(sb.toString());
     }
 
-    public static void printSeparator() {
-        System.out.println("\n<<>><<>><<>><<>><<>><<>><<>><<>>\n");
-    }
-
 }

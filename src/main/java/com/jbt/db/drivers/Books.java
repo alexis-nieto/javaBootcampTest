@@ -9,6 +9,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 import com.jbt.db.Config;
 import com.jbt.db.containers.Book;
+import com.jbt.sysout.CommonPrinter;
 import com.jbt.sysout.printers.BookPrinter;
 
 public class Books {
@@ -148,9 +149,13 @@ public class Books {
         }
     }
 
+    /**
+         * Retrieves books from the database based on the specified attribute and field.
+         *
+         * @param attribute The attribute to search for (e.g., "title", "author", "all").
+         * @param field The value of the attribute to search for.
+         */
     public void getBooks(String attribute, String field) {
-
-
 
         StringBuilder sql = new StringBuilder();
 
@@ -166,8 +171,6 @@ public class Books {
             sql.append(field);
             sql.append("%\");");
         }
-
-
 
         //System.out.println(sql.toString());
 
@@ -196,12 +199,12 @@ public class Books {
                 book.setGenre(rs.getString("genre"));
                 book.setLanguage(rs.getString("language_db"));
 
-                BookPrinter.printSeparator();
+                CommonPrinter.printSeparator();
                 BookPrinter.printBookDetails(book);
 
             }
 
-            BookPrinter.printSeparator();
+            CommonPrinter.printSeparator();
 
         } catch (Exception e) {
             System.out.println("Task Failed:\nAn error occurred while retrieving the books from the database.\n");
@@ -210,45 +213,10 @@ public class Books {
         //System.out.println("END");
     }
 
-
-    // Get all books by passing no arguemts.
+    /**
+         * Get all books by passing no arguments.
+         */
     public void getBooks() {
-
-        String SQL = "SELECT * FROM books";
-
-        try (
-            Connection conn = DriverManager.getConnection(
-                this.DB_URL,
-                this.DB_USER,
-                this.DB_PASS
-            );
-            PreparedStatement ps = conn.prepareStatement(SQL);
-            ResultSet rs = ps.executeQuery();
-        ) {
-            while (rs.next()) {
-
-                Book book = new Book();
-
-                book.setIsbn(rs.getString("isbn"));
-                book.setTitle(rs.getString("title"));
-                book.setAuthor(rs.getString("author"));
-                book.setPublisher(rs.getString("publisher"));
-                book.setPublicationYear(rs.getInt("publication_year"));
-                book.setPageCount(rs.getInt("page_count"));
-                book.setStockQuantity(rs.getInt("stock_quantity"));
-                book.setGenre(rs.getString("genre"));
-                book.setLanguage(rs.getString("language_db"));
-
-                BookPrinter.printSeparator();
-                BookPrinter.printBookDetails(book);
-
-            }
-
-            BookPrinter.printSeparator();
-
-        } catch (Exception e) {
-            System.out.println("An error occurred while retrieving the books from the database.");
-            e.printStackTrace();
-        }
+        getBooks("all", "all");
     }
 }
