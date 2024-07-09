@@ -25,6 +25,7 @@ public class Book {
          * The string includes all the book's attributes in a formatted manner.
          * @return A string representation of the Book object.
          */
+    @Deprecated
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{\n");
