@@ -34,7 +34,7 @@ public class MenuBooks {
                     break;
                 case "3":
                     // Delete Book
-                    //PrinterCommon.clearScreen();
+                    PrinterCommon.clearScreen();
                     MenuBookDelete.deleteBook();
                     break;
                 case "4":
