@@ -51,37 +51,54 @@ CREATE TABLE loans (
 -- Insert sample data into the 'books' table
 INSERT INTO books (isbn, title, author, publisher, publication_year, page_count, stock_quantity, genre, language_db)
 VALUES
-    ('9780141036144', '1984', 'George Orwell', 'Penguin Books', 1949, 328, 10, 'Dystopian Fiction', 'English'),
-    ('9780060935467', 'To Kill a Mockingbird', 'Harper Lee', 'Harper Perennial', 1960, 336, 5, 'Classic Literature', 'English'),
-    ('9780743273565', 'The Great Gatsby', 'F. Scott Fitzgerald', 'Scribner', 1925, 180, 8, 'Classic Literature', 'English'),
-    ('9780307474278', 'The Catcher in the Rye', 'J.D. Salinger', 'Little, Brown and Company', 1951, 224, 6, 'Classic Literature', 'English'),
-    ('9780061120084', 'One Hundred Years of Solitude', 'Gabriel García Márquez', 'Harper Perennial', 1967, 417, 3, 'Magical Realism', 'Spanish'),
-    ('9780451524935', 'Animal Farm', 'George Orwell', 'Signet Classics', 1945, 140, 12, 'Political Satire', 'English'),
-    ('9780679720201', 'The Stranger', 'Albert Camus', 'Vintage', 1942, 123, 7, 'Existentialism', 'French'),
-    ('9780143105428', 'Pride and Prejudice', 'Jane Austen', 'Penguin Classics', 1813, 480, 9, 'Romance', 'English');
+    ('9780593311257', 'The Midnight Library', 'Matt Haig', 'Viking', 2020, 304, 15, 'Magical Realism', 'English'),
+    ('9780525559474', 'The Vanishing Half', 'Brit Bennett', 'Riverhead Books', 2020, 352, 12, 'Historical Fiction', 'English'),
+    ('9780593311295', 'The Invisible Life of Addie LaRue', 'V.E. Schwab', 'Tor Books', 2020, 448, 10, 'Fantasy', 'English'),
+    ('9780593190517', 'The Overstory', 'Richard Powers', 'W. W. Norton & Company', 2018, 512, 8, 'Environmental Fiction', 'English'),
+    ('9780593311233', 'The Nickel Boys', 'Colson Whitehead', 'Doubleday', 2019, 224, 6, 'Historical Fiction', 'English'),
+    ('9780593230251', 'The Anthropocene Reviewed', 'John Green', 'Dutton', 2021, 304, 14, 'Essays', 'English'),
+    ('9780593311219', 'The Midnight Bargain', 'C.L. Polk', 'Erewhon', 2020, 384, 9, 'Fantasy', 'English'),
+    ('9780593087497', 'The Prophets', 'Robert Jones Jr.', 'G.P. Putnam''s Sons', 2021, 400, 11, 'Historical Fiction', 'English'),
+    ('9780593311264', 'The Invisible Life of Addie LaRue', 'V.E. Schwab', 'Tor Books', 2020, 448, 10, 'Fantasy', 'English'),
+    ('9780593190524', 'The Overstory', 'Richard Powers', 'W. W. Norton & Company', 2018, 512, 8, 'Environmental Fiction', 'English'),
+    ('9780593311240', 'The Nickel Boys', 'Colson Whitehead', 'Doubleday', 2019, 224, 6, 'Historical Fiction', 'English'),
+    ('9780593230268', 'The Anthropocene Reviewed', 'John Green', 'Dutton', 2021, 304, 14, 'Essays', 'English'),
+    ('9780593311226', 'The Midnight Bargain', 'C.L. Polk', 'Erewhon', 2020, 384, 9, 'Fantasy', 'English'),
+    ('9780593087503', 'The Prophets', 'Robert Jones Jr.', 'G.P. Putnam''s Sons', 2021, 400, 11, 'Historical Fiction', 'English'),
+    ('9780593311271', 'The Midnight Library', 'Matt Haig', 'Viking', 2020, 304, 15, 'Magical Realism', 'English'),
+    ('9780525559481', 'The Vanishing Half', 'Brit Bennett', 'Riverhead Books', 2020, 352, 12, 'Historical Fiction', 'English');
 
 -- Insert sample data into the 'members' table
 INSERT INTO members (first_name, last_name, phone_number, email, address_db, city, state_db, zip_code, membership_start_date)
 VALUES
-    ('John', 'Doe', '1234567890', 'john.doe@example.com', '123 Main St', 'New York', 'NY', '10001', '2022-01-01'),
-    ('Jane', 'Smith', '9876543210', 'jane.smith@example.com', '456 Elm St', 'Los Angeles', 'CA', '90001', '2022-02-15'),
-    ('Michael', 'Johnson', '5555555555', 'michael.johnson@example.com', '789 Oak Ave', 'Chicago', 'IL', '60601', '2022-03-10'),
-    ('Emily', 'Davis', '1112223333', 'emily.davis@example.com', '321 Pine Rd', 'Houston', 'TX', '77001', '2022-04-20'),
-    ('David', 'Wilson', '4445556666', 'david.wilson@example.com', '654 Maple Dr', 'Philadelphia', 'PA', '19019', '2022-05-05'),
-    ('Sarah', 'Anderson', '7778889999', 'sarah.anderson@example.com', '987 Cedar Ln', 'Phoenix', 'AZ', '85001', '2022-06-12'),
-    ('Robert', 'Taylor', '2223334444', 'robert.taylor@example.com', '741 Birch St', 'San Antonio', 'TX', '78201', '2022-07-08'),
-    ('Jennifer', 'Martinez', '5556667777', 'jennifer.martinez@example.com', '852 Walnut Ave', 'San Diego', 'CA', '92101', '2022-08-18');
+    ('Liam', 'Nguyen', '5551234567', 'liam.nguyen@example.com', '1234 Maple Ave', 'Seattle', 'WA', '98101', '2021-01-15'),
+    ('Emma', 'Garcia', '5559876543', 'emma.garcia@example.com', '5678 Oak St', 'Denver', 'CO', '80202', '2021-03-20'),
+    ('Noah', 'Patel', '5554561234', 'noah.patel@example.com', '9101 Pine Rd', 'Atlanta', 'GA', '30303', '2021-05-10'),
+    ('Ava', 'Kim', '5557894561', 'ava.kim@example.com', '1213 Cedar Ln', 'Miami', 'FL', '33101', '2021-07-05'),
+    ('William', 'Chen', '5552345678', 'william.chen@example.com', '1415 Birch St', 'Boston', 'MA', '02101', '2021-09-12'),
+    ('Sophia', 'Hernandez', '5556789012', 'sophia.hernandez@example.com', '1617 Walnut Ave', 'Dallas', 'TX', '75201', '2021-11-08'),
+    ('James', 'Wong', '5553456789', 'james.wong@example.com', '1819 Spruce Rd', 'San Francisco', 'CA', '94101', '2022-01-18'),
+    ('Mia', 'Tran', '5557890123', 'mia.tran@example.com', '2021 Elm Ln', 'Washington', 'DC', '20001', '2022-03-22'),
+    ('Oliver', 'Lee', '5551234568', 'oliver.lee@example.com', '2223 Maple Ave', 'Seattle', 'WA', '98101', '2022-05-15'),
+    ('Charlotte', 'Gonzalez', '5559876544', 'charlotte.gonzalez@example.com', '2425 Oak St', 'Denver', 'CO', '80202', '2022-07-20'),
+    ('Elijah', 'Singh', '5554561235', 'elijah.singh@example.com', '2627 Pine Rd', 'Atlanta', 'GA', '30303', '2022-09-10'),
+    ('Amelia', 'Park', '5557894562', 'amelia.park@example.com', '2829 Cedar Ln', 'Miami', 'FL', '33101', '2022-11-05'),
+    ('Benjamin', 'Liu', '5552345679', 'benjamin.liu@example.com', '3031 Birch St', 'Boston', 'MA', '02101', '2023-01-12'),
+    ('Isabella', 'Martinez', '5556789013', 'isabella.martinez@example.com', '3233 Walnut Ave', 'Dallas', 'TX', '75201', '2023-03-08'),
+    ('Lucas', 'Choi', '5553456790', 'lucas.choi@example.com', '3435 Spruce Rd', 'San Francisco', 'CA', '94101', '2023-05-18'),
+    ('Harper', 'Vu', '5557890124', 'harper.vu@example.com', '3637 Elm Ln', 'Washington', 'DC', '20001', '2023-07-22');
 
 -- Insert sample data into the 'loans' table
 INSERT INTO loans (member_id, isbn, loan_date, return_due_date)
 VALUES
-    (1, '9780141036144', '2023-05-01', '2023-05-15'),
-    (2, '9780060935467', '2023-05-05', '2023-05-19'),
-    (1, '9780743273565', '2023-05-10', '2023-05-24'),
-    (3, '9780307474278', '2023-05-12', '2023-05-26'),
-    (4, '9780061120084', '2023-05-15', '2023-05-29'),
-    (5, '9780451524935', '2023-05-18', '2023-06-01'),
-    (2, '9780679720201', '2023-05-20', '2023-06-03'),
-    (1, '9780143105428', '2023-05-22', '2023-06-05');
-
-SELECT * FROM books;
+    (1, '9780593311257', '2024-01-01', '2024-01-15'),
+    (2, '9780525559474', '2024-01-05', '2024-01-19'),
+    (1, '9780593311295', '2024-01-10', '2024-01-24'),
+    (3, '9780593190517', '2024-01-12', '2024-01-26'),
+    (4, '9780593311233', '2024-01-15', '2024-01-29'),
+    (5, '9780593311226', '2024-01-18', '2024-02-01'),
+    (6, '9780593087503', '2024-01-20', '2024-02-03'),
+    (7, '9780593311271', '2024-01-22', '2024-02-05'),
+    (8, '9780525559481', '2024-01-25', '2024-02-08'),
+    (9, '9780593311257', '2024-01-28', '2024-02-11'),
+    (10, '9780525559474', '2024-01-30', '2024-02-13');
