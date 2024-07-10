@@ -17,9 +17,19 @@ public class MenuBookDelete {
 
         Books books = new Books();
         Book book = new Book();
+        String isbn = null;
 
         System.out.print("Enter the book ID to delete: ");
-        book.setIsbn(scanner.nextLine());
+
+        while (true) {
+            isbn = scanner.nextLine();
+            if (isbn.matches("\\d{10}|\\d{13}")) {
+                break;
+            }
+            System.out.print("Invalid ISBN. Please enter a valid 10 or 13 digit ISBN: ");
+        }
+        
+        book.setIsbn(isbn);
 
         PrinterCommon.clearScreen();
         books.deleteBook(book);
