@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 import com.jbt.db.Config;
+import com.jbt.db.containers.Book;
 import com.jbt.db.containers.Member;
 import com.jbt.sysout.PrinterCommon;
 import com.jbt.sysout.printers.drivers.PrinterDriverMember;
@@ -223,4 +224,28 @@ public class Members {
     public void getMembers() {
         getMembers("all", "all");
     }
+
+    public boolean checkIfExists(Member member) {
+        String SQL = "SELECT COUNT(*) FROM members WHERE email = ?;";
+
+        try (
+            Connection conn = DriverManager.getConnection(
+                this.DB_URL,
+                this.DB_USER,
+                this.DB_PASS
+            );
+            PreparedStatement ps = conn.prepareStatement(SQL);
+        ) {
+            ps.setString(1, member.getEmail());
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
+            return count > 0;
+        } catch (SQLException e) {
+            System.out.println("Task Failed:\nThere was an error checking if the book exists in the database.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

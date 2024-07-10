@@ -7,7 +7,7 @@ import com.jbt.db.drivers.Books;
 import com.jbt.sysout.PrinterCommon;
 import com.jbt.sysout.printers.menus.PrinterMenuBooks;
 
-public class MenuMembersSearch {
+public class MenuMemberSearch {
 
     public static Scanner scanner = new Scanner(System.in);
 

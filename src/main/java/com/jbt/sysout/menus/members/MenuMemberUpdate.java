@@ -6,7 +6,7 @@ import com.jbt.db.containers.Book;
 import com.jbt.db.drivers.Books;
 import com.jbt.sysout.PrinterCommon;
 
-public class MenuMembersUpdate {
+public class MenuMemberUpdate {
 
     private static Scanner scanner = new Scanner(System.in);
 

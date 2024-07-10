@@ -1,12 +1,8 @@
 package com.jbt.sysout.printers.menus;
 
-import com.jbt.sysout.PrinterCommon;
-
 public class PrinterMenuMembers {
 
     public static void printMemberMenu() {
-
-        PrinterCommon.clearScreen();
 
         StringBuilder sb = new StringBuilder();
         sb.append("--- Member Menu ---\n");

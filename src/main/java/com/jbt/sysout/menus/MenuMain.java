@@ -31,6 +31,7 @@ public class MenuMain {
                     MenuBooks.displayBookMenu();
                     continue;
                 case "2":
+                    PrinterCommon.clearScreen();
                     MenuMembers.displayMemberMenu();
                     continue;
                 case "3":

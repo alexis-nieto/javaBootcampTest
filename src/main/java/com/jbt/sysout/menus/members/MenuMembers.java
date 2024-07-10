@@ -15,7 +15,6 @@ public class MenuMembers {
 
         while (!quit) {
 
-            PrinterCommon.clearScreen();
             PrinterMenuMembers.printMemberMenu();
 
             String choice = scanner.nextLine();
@@ -24,6 +23,8 @@ public class MenuMembers {
             switch (choice) {
                 case "1":
                     // Add Member
+                    PrinterCommon.clearScreen();
+                    MenuMemberAdd.addNewMember();
                     break;
                 case "2":
                     // Update Member
@@ -35,6 +36,7 @@ public class MenuMembers {
                     // View Members
                     break;
                 case "5":
+                    PrinterCommon.clearScreen();
                     quit = true;
                     break;
                 default:
@@ -42,6 +44,5 @@ public class MenuMembers {
                     continue; // Restart the loop to ask for input again
             }
         }
-        PrinterCommon.clearScreen();
     }
 }
