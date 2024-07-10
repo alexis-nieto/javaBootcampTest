@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Build-Jdk-Spec: 17
+Class-Path: mysql-connector-j-9.0.0.jar protobuf-java-4.26.1.jar json-si
+ mple-1.1.1.jar junit-4.10.jar hamcrest-core-1.1.jar
+Main-Class: com.jbt.Main
+Created-By: Maven Integration for Eclipse
+
