@@ -267,4 +267,24 @@ public class Books {
         }
     }
 
+    public boolean increaseStockQuantity(Book book) {
+        String SQL = "UPDATE books SET stock_quantity = stock_quantity + 1 WHERE isbn = ?;";
+
+        try (
+            Connection conn = DriverManager.getConnection(
+                this.DB_URL,
+                this.DB_USER,
+                this.DB_PASS
+            );
+            PreparedStatement ps = conn.prepareStatement(SQL);
+        ) {
+            ps.setString(1, book.getIsbn());
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.out.println("Task Failed:\nThere was an error increasing the stock quantity for the book in the database.");
+            return false;
+        }
+    }
+
 }

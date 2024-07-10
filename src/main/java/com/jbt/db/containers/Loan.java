@@ -80,7 +80,12 @@ public class Loan {
     }
 
     public void setActualReturnDate(Date actual_return_date) {
-        this.actual_return_date = actual_return_date;
+        
+        if (return_due_date != null) {
+            this.actual_return_date = actual_return_date;
+        } else {
+            throw new IllegalArgumentException("Return due date must not be null.");
+        }
     }
 
     public String getStatus() {

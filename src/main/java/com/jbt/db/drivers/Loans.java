@@ -86,7 +86,7 @@ public class Loans {
         sb.append("status_db = ? ");
         sb.append("WHERE loan_id = ?;");
 
-        System.out.println(loan.getStatus());
+        //System.out.println(loan.getStatus());
         
         try (
             Connection conn = DriverManager.getConnection(
@@ -170,7 +170,72 @@ public class Loans {
         }
     }
 
+    public Loan getSpecificLoan(Loan loan) {
+
+        String SQL = "SELECT * FROM loans WHERE loan_id = ?;";
+        //System.out.println(loan.getLoanId());
+
+        try (
+            Connection conn = DriverManager.getConnection(
+                this.DB_URL,
+                this.DB_USER,
+                this.DB_PASS
+            );
+            PreparedStatement ps = conn.prepareStatement(SQL);
+        ) {
+
+            ps.setInt(1, loan.getLoanId());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                loan.setLoanId(rs.getInt("loan_id"));
+                loan.setMemberId(rs.getInt("member_id"));
+                loan.setIsbn(rs.getString("isbn"));
+                loan.setLoanDate(rs.getDate("loan_date"));
+                loan.setReturnDueDate(rs.getDate("return_due_date"));
+                loan.setActualReturnDate(rs.getDate("actual_return_date"));
+                loan.setStatus(rs.getString("status_db"));
+
+            }
+
+            return loan;
+
+        } catch (Exception e) {
+            System.out.println("Task Failed:\nAn error occurred while retrieving the loans from the database.\n");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void getLoans() {
         getLoans("all", "all");
     }
+
+    public boolean checkIfExists(Loan loan) {
+        String SQL = "SELECT COUNT(*) FROM loans WHERE loan_id = ?;";
+        //System.out.println(SQL);
+
+        try (
+            Connection conn = DriverManager.getConnection(
+                this.DB_URL,
+                this.DB_USER,
+                this.DB_PASS
+            );
+            PreparedStatement ps = conn.prepareStatement(SQL);
+        ) {
+            ps.setInt(1, loan.getLoanId());
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
+            return count > 0;
+        } catch (SQLException e) {
+            System.out.println("Task Failed:\nThere was an error checking if the loan exists in the database.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
 }

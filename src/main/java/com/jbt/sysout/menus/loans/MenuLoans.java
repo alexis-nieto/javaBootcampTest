@@ -28,6 +28,8 @@ public class MenuLoans {
                     continue;
                 case "2":
                     // retun Loan
+                    PrinterCommon.clearScreen();
+                    MenuLoansReturn.returnBook();
                     continue;
                 case "3":
                     // view Loan

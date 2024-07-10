@@ -51,19 +51,19 @@ public class Members {
             PreparedStatement ps = conn.prepareStatement(SQL);
         ) {
 
-        ps.setString(1, member.getFirstName());
-        ps.setString(2, member.getLastName());
-        ps.setString(3, member.getPhoneNumber());
-        ps.setString(4, member.getEmail());
-        ps.setString(5, member.getAddress());
-        ps.setString(6, member.getCity());
-        ps.setString(7, member.getState());
-        ps.setString(8, member.getZipCode());
-        ps.setDate(9, new java.sql.Date(member.getMembershipStartDate().getTime()));
+            ps.setString(1, member.getFirstName());
+            ps.setString(2, member.getLastName());
+            ps.setString(3, member.getPhoneNumber());
+            ps.setString(4, member.getEmail());
+            ps.setString(5, member.getAddress());
+            ps.setString(6, member.getCity());
+            ps.setString(7, member.getState());
+            ps.setString(8, member.getZipCode());
+            ps.setDate(9, new java.sql.Date(member.getMembershipStartDate().getTime()));
 
-        ps.executeUpdate();
+            ps.executeUpdate();
 
-        PrinterDriverMember.printSuccess("Email", member.getEmail() , "added");
+            PrinterDriverMember.printSuccess("Email", member.getEmail() , "added");
 
         } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("Task Failed:\nA member with the same email already exists in the database.\n");
