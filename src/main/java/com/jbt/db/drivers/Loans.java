@@ -12,12 +12,26 @@ import com.jbt.db.containers.Loan;
 import com.jbt.sysout.PrinterCommon;
 import com.jbt.sysout.printers.drivers.PrinterDriverLoan;
 
+
+/**
+ * The Loans class provides methods for managing loans in a database.
+ * It includes methods for adding, deleting, updating, and retrieving loans.
+ * The class uses JDBC to connect to the database and execute SQL queries.
+ * It also includes utility methods for checking if a loan exists in the database.
+ */
 public class Loans {
 
     private final String DB_URL = Config.getConfig("database_url") + Config.getConfig("database_name");
     private final String DB_USER = Config.getConfig("username");
     private final String DB_PASS = Config.getConfig("password");
 
+    /**
+         * Adds a new loan to the database.
+         *
+         * @param loan The Loan object containing the loan details to be added.
+         * @throws SQLIntegrityConstraintViolationException if a loan with the same ID already exists in the database.
+         * @throws SQLException if there is an unknown error adding the loan to the database.
+         */
     public void addLoan(Loan loan) {
 
         String SQL = "INSERT INTO loans (member_id, isbn, loan_date, return_due_date, actual_return_date, status_db) " +
@@ -51,6 +65,12 @@ public class Loans {
         }
     }
 
+    /**
+         * Deletes a loan from the database based on the provided Loan object.
+         * 
+         * @param loan The Loan object containing the loan_id of the loan to be deleted.
+         * @throws SQLException if there is an error deleting the loan from the database.
+         */
     public void deleteLoan(Loan loan) {
         String SQL = "DELETE FROM loans WHERE loan_id = ?;";
 
@@ -74,6 +94,13 @@ public class Loans {
         }
     }
 
+    /**
+         * Updates an existing loan in the database.
+         *
+         * @param loan The loan object containing the updated loan details.
+         * @throws SQLIntegrityConstraintViolationException if the loan ID already exists in the database.
+         * @throws SQLException if there is an error updating the loan in the database.
+         */
     public void updateLoan(Loan loan) {
 
         StringBuilder sb = new StringBuilder();
@@ -117,6 +144,14 @@ public class Loans {
         }
     }
 
+    /**
+         * Retrieves loans from the database based on the specified attribute and field.
+         * If both attribute and field are "all", retrieves all loans.
+         * Otherwise, retrieves loans where the specified attribute matches the given field (case-insensitive).
+         *
+         * @param attribute The attribute to filter loans by (e.g., "member_id", "isbn", "status_db")
+         * @param field The value to match against the specified attribute
+         */
     public void getLoans(String attribute, String field) {
 
         StringBuilder sql = new StringBuilder();
@@ -170,6 +205,12 @@ public class Loans {
         }
     }
 
+    /**
+         * Retrieves a specific loan from the database based on the provided Loan object.
+         *
+         * @param loan The Loan object containing the loan ID to retrieve.
+         * @return The Loan object with the retrieved loan details, or null if an error occurs.
+         */
     public Loan getSpecificLoan(Loan loan) {
 
         String SQL = "SELECT * FROM loans WHERE loan_id = ?;";
@@ -209,10 +250,19 @@ public class Loans {
         }
     }
 
+    /**
+         * Retrieves all loans from the database.
+         */
     public void getLoans() {
         getLoans("all", "all");
     }
 
+    /**
+         * Checks if a loan exists in the database.
+         *
+         * @param loan The Loan object containing the loan ID to check.
+         * @return true if the loan exists in the database, false otherwise or if an error occurs.
+         */
     public boolean checkIfExists(Loan loan) {
         String SQL = "SELECT COUNT(*) FROM loans WHERE loan_id = ?;";
         //System.out.println(SQL);

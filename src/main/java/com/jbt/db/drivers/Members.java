@@ -12,6 +12,11 @@ import com.jbt.db.containers.Member;
 import com.jbt.sysout.PrinterCommon;
 import com.jbt.sysout.printers.drivers.PrinterDriverMember;
 
+/**
+ * The Members class provides methods for managing member data in the database.
+ * It includes methods for adding, deleting, updating, and retrieving members.
+ * The class uses JDBC to connect to the database and execute SQL queries.
+ */
 public class Members {
 
     private final String DB_URL = Config.getConfig("database_url") + Config.getConfig("database_name");
@@ -104,6 +109,13 @@ public class Members {
         }
     }
 
+    /**
+         * Updates a member's information in the database.
+         *
+         * @param member The member object containing the updated information.
+         * @throws SQLIntegrityConstraintViolationException if the email already exists in the database.
+         * @throws SQLException if there is an error updating the member in the database.
+         */
     public void updateMember(Member member) {
 
         StringBuilder sb = new StringBuilder();
@@ -224,6 +236,12 @@ public class Members {
         getMembers("all", "all");
     }
 
+    /**
+         * Check if a member exists in the database by their member ID.
+         *
+         * @param member The Member object to check for existence.
+         * @return true if the member exists in the database, false otherwise.
+         */
     public boolean checkIfExists(Member member) {
         String SQL = "SELECT COUNT(*) FROM members WHERE member_id = ?;";
         //System.out.println(SQL);
