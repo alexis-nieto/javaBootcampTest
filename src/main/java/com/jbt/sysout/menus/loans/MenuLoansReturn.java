@@ -1,5 +1,7 @@
 package com.jbt.sysout.menus.loans;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
@@ -13,7 +15,7 @@ import com.jbt.db.drivers.Members;
 
 import com.jbt.sysout.PrinterCommon;
 
-public class MenuLoansBorrow {
+public class MenuLoansReturn {
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -82,6 +84,7 @@ public class MenuLoansBorrow {
 
         Loans loans = new Loans();
         Loan loan = new Loan();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         loan.setMemberId(member.getMemberId());
         loan.setIsbn(book.getIsbn());
@@ -104,6 +107,8 @@ public class MenuLoansBorrow {
         PrinterCommon.clearScreen();
         loans.addLoan(loan);
         books.decreaseStockQuantity(book);
+
+        
 
     }
 
