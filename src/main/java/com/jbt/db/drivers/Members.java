@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 import com.jbt.db.Config;
-import com.jbt.db.containers.Book;
 import com.jbt.db.containers.Member;
 import com.jbt.sysout.PrinterCommon;
 import com.jbt.sysout.printers.drivers.PrinterDriverMember;
