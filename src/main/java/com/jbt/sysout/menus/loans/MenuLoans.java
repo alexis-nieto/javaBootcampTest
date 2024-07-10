@@ -27,15 +27,18 @@ public class MenuLoans {
                     MenuLoansBorrow.borrowBook();
                     continue;
                 case "2":
-                    // retun Loan
+                    // return Loan
                     PrinterCommon.clearScreen();
                     MenuLoansReturn.returnBook();
                     continue;
                 case "3":
                     // view Loan
+                    PrinterCommon.clearScreen();
+                    MenuLoansHistory.viewLoanHistory();
                     continue;
                 case "4":
                     exit = true;
+                    PrinterCommon.clearScreen();
                     continue;
                 default:
                     System.out.println("Invalid choice. Please try again.");
