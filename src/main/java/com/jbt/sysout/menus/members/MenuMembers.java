@@ -2,6 +2,7 @@ package com.jbt.sysout.menus.members;
 
 import java.util.Scanner;
 
+import com.jbt.db.drivers.Members;
 import com.jbt.sysout.PrinterCommon;
 import com.jbt.sysout.printers.menus.PrinterMenuMembers;
 
@@ -37,6 +38,8 @@ public class MenuMembers {
                     break;
                 case "5":
                     // View ALL Members
+                    Members members = new Members();
+                    members.getMembers();
                     break;
                 case "6":
                     PrinterCommon.clearScreen();
