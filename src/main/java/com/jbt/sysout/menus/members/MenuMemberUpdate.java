@@ -2,103 +2,104 @@ package com.jbt.sysout.menus.members;
 
 import java.util.Scanner;
 
-import com.jbt.db.containers.Book;
-import com.jbt.db.drivers.Books;
+import com.jbt.db.containers.Member;
+import com.jbt.db.drivers.Members;
 import com.jbt.sysout.PrinterCommon;
 
 public class MenuMemberUpdate {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void updateBook() {
+    public static void updateMember() {
         
-        System.out.println(">>> Updating Book");
+        System.out.println(">>> Updating Member");
 
-        Books books = new Books();
-        Book book = new Book();
+        Members members = new Members();
+        Member member = new Member();
 
-        System.out.print("Enter ISBN of the book to update: ");
-        String isbn = scanner.nextLine();
-        book.setIsbn(isbn);
-
-        if (books.checkIfExists(book)) {
-            System.out.print("Enter new title: ");
-            String newTitle = scanner.nextLine();
-            while (newTitle.isEmpty()) {
-                System.out.print("Title cannot be empty. Please enter a valid title: ");
-                newTitle = scanner.nextLine();
+        System.out.print("Enter ID of the member to update: ");
+        int id = 0;
+        boolean validId = false;
+        while (!validId) {
+            try {
+                id = Integer.parseInt(scanner.nextLine());
+                validId = true;
+            } catch (NumberFormatException e) {
+                System.out.print("Invalid ID. Please enter a valid number: ");
             }
-            book.setTitle(newTitle);
+        }
+        member.setMemberId(id);
 
-            System.out.print("Enter new author: ");
-            String newAuthor = scanner.nextLine();
-            while (newAuthor.isEmpty()) {
-                System.out.print("Author cannot be empty. Please enter a valid author: ");
-                newAuthor = scanner.nextLine();
+        if (members.checkIfExists(member)) {
+            System.out.print("Enter new first name: ");
+            String newFirstName = scanner.nextLine();
+            while (newFirstName.isEmpty()) {
+                System.out.print("First name cannot be empty. Please enter a valid first name: ");
+                newFirstName = scanner.nextLine();
             }
-            book.setAuthor(newAuthor);
+            member.setFirstName(newFirstName);
 
-            System.out.print("Enter new publisher: ");
-            String newPublisher = scanner.nextLine();
-            while (newPublisher.isEmpty()) {
-                System.out.print("Publisher cannot be empty. Please enter a valid publisher: ");
-                newPublisher = scanner.nextLine();
+            System.out.print("Enter new last name: ");
+            String newLastName = scanner.nextLine();
+            while (newLastName.isEmpty()) {
+                System.out.print("Last name cannot be empty. Please enter a valid last name: ");
+                newLastName = scanner.nextLine();
             }
-            book.setPublisher(newPublisher);
+            member.setLastName(newLastName);
 
-            System.out.print("Enter new publication year: ");
-            int newPublicationYear = 0;
-            boolean validPublicationYear = false;
-            while (!validPublicationYear) {
-                try {
-                    newPublicationYear = Integer.parseInt(scanner.nextLine());
-                    validPublicationYear = true;
-                } catch (NumberFormatException e) {
-                    System.out.print("Invalid publication year. Please enter a valid year: ");
-                }
+            System.out.print("Enter new email: ");
+            String newEmail = scanner.nextLine();
+            while (newEmail.isEmpty()) {
+                System.out.print("Email cannot be empty. Please enter a valid email: ");
+                newEmail = scanner.nextLine();
             }
-            book.setPublicationYear(newPublicationYear);
+            member.setEmail(newEmail);
 
-            System.out.print("Enter new page count: ");
-            int newPageCount = 0;
-            boolean validPageCount = false;
-            while (!validPageCount) {
-                try {
-                    newPageCount = Integer.parseInt(scanner.nextLine());
-                    validPageCount = true;
-                } catch (NumberFormatException e) {
-                    System.out.print("Invalid page count. Please enter a valid number: ");
-                }
+            System.out.print("Enter new phone number: ");
+            String newPhoneNumber = scanner.nextLine();
+            while (newPhoneNumber.isEmpty()) {
+                System.out.print("Phone number cannot be empty. Please enter a valid phone number: ");
+                newPhoneNumber = scanner.nextLine();
             }
-            book.setPageCount(newPageCount);
+            member.setPhoneNumber(newPhoneNumber);
 
-            System.out.print("Enter new stock quantity: ");
-            int newStockQuantity = 0;
-            boolean validStockQuantity = false;
-            while (!validStockQuantity) {
-                try {
-                    newStockQuantity = Integer.parseInt(scanner.nextLine());
-                    validStockQuantity = true;
-                } catch (NumberFormatException e) {
-                    System.out.print("Invalid stock quantity. Please enter a valid number: ");
-                }
+            System.out.print("Enter new address: ");
+            String newAddress = scanner.nextLine();
+            while (newAddress.isEmpty()) {
+                System.out.print("Address cannot be empty. Please enter a valid address: ");
+                newAddress = scanner.nextLine();
             }
-            book.setStockQuantity(newStockQuantity);
+            member.setAddress(newAddress);
 
-            System.out.print("Enter new genre: ");
-            String newGenre = scanner.nextLine();
-            book.setGenre(newGenre);
+            System.out.print("Enter new city: ");
+            String newCity = scanner.nextLine();
+            while (newCity.isEmpty()) {
+                System.out.print("City cannot be empty. Please enter a valid city: ");
+                newCity = scanner.nextLine();
+            }
+            member.setCity(newCity);
 
-            System.out.print("Enter new language: ");
-            String newLanguage = scanner.nextLine();
-            book.setLanguage(newLanguage);
+            System.out.print("Enter new state: ");
+            String newState = scanner.nextLine();
+            while (newState.isEmpty()) {
+                System.out.print("State cannot be empty. Please enter a valid state: ");
+                newState = scanner.nextLine();
+            }
+            member.setState(newState);
+
+            System.out.print("Enter new zip code: ");
+            String newZipCode = scanner.nextLine();
+            while (newZipCode.isEmpty()) {
+                System.out.print("Zip code cannot be empty. Please enter a valid zip code: ");
+                newZipCode = scanner.nextLine();
+            }
+            member.setZipCode(newZipCode);
 
             PrinterCommon.clearScreen();
-            books.updateBook(book);
-            //System.out.println("Book updated successfully.");
+            members.updateMember(member);
         } else {
             PrinterCommon.clearScreen();
-            System.out.println("Book with the given ISBN does not exist.\n");
+            System.out.println("Member with the given ID does not exist.\n");
         }
     }
 

@@ -30,7 +30,7 @@ public class MenuMembers {
                 case "2":
                     // Update Member
                     PrinterCommon.clearScreen();
-                    
+                    MenuMemberUpdate.updateMember();
                     break;
                 case "3":
                     // Delete Member

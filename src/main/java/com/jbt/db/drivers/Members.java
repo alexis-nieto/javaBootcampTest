@@ -225,7 +225,8 @@ public class Members {
     }
 
     public boolean checkIfExists(Member member) {
-        String SQL = "SELECT COUNT(*) FROM members WHERE email = ?;";
+        String SQL = "SELECT COUNT(*) FROM members WHERE member_id = ?;";
+        //System.out.println(SQL);
 
         try (
             Connection conn = DriverManager.getConnection(
@@ -235,7 +236,7 @@ public class Members {
             );
             PreparedStatement ps = conn.prepareStatement(SQL);
         ) {
-            ps.setString(1, member.getEmail());
+            ps.setInt(1, member.getMemberId());
             ResultSet rs = ps.executeQuery();
             rs.next();
             int count = rs.getInt(1);
