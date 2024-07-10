@@ -10,8 +10,9 @@ public class PrinterMenuMembers {
         sb.append("2. Update Member\n");
         sb.append("3. Delete Member\n");
         sb.append("4. View Members\n");
-        sb.append("5. Return to Main Menu\n");
-        sb.append("Enter your choice (1-5): ");
+        sb.append("5. View Members\n");
+        sb.append("6. Return to Main Menu\n");
+        sb.append("Enter your choice (1-6): ");
         System.out.print(sb.toString());    
     }
 

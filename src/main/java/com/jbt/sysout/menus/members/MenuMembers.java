@@ -36,6 +36,9 @@ public class MenuMembers {
                     // View Members
                     break;
                 case "5":
+                    // View ALL Members
+                    break;
+                case "6":
                     PrinterCommon.clearScreen();
                     quit = true;
                     break;
