@@ -9,7 +9,8 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 import com.jbt.db.Config;
 import com.jbt.db.containers.Book;
-import com.jbt.sysout.printers.BookPrinter;
+import com.jbt.sysout.PrinterCommon;
+import com.jbt.sysout.printers.drivers.PrinterDriverBook;
 
 public class Books {
 
@@ -17,13 +18,6 @@ public class Books {
     private final String DB_USER = Config.getConfig("username");
     private final String DB_PASS = Config.getConfig("password");
 
-    /**
-         * Adds a book to the database.
-         * 
-         * @param book The book to add to the database.
-         * @throws SQLIntegrityConstraintViolationException if a book with the same ISBN already exists in the database.
-         * @throws SQLException if there is an error adding the book to the database.
-         */
     public void addBook(Book book) {
 
         String SQL = "INSERT INTO books (isbn, title, author, publisher, publication_year, page_count, stock_quantity, genre, language_db) " +
@@ -62,7 +56,7 @@ public class Books {
 
         ps.executeUpdate();
 
-        BookPrinter.printSuccess("ISBN", book.getIsbn() , "added");
+        PrinterDriverBook.printSuccess("ISBN", book.getIsbn() , "added");
 
         } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("Task Failed:\nA book with the same ISBN already exists in the database.\n");
@@ -73,13 +67,6 @@ public class Books {
         }
     }
 
-    
-    /**
-         * Deletes a book from the database based on its ISBN.
-         * 
-         * @param book The book object to be deleted from the database.
-         * @throws SQLException if there is an error deleting the book from the database.
-         */
     public void deleteBook(Book book) {
         String SQL = "DELETE FROM books WHERE isbn = ?;";
 
@@ -96,7 +83,7 @@ public class Books {
 
         ps.executeUpdate();
 
-        BookPrinter.printSuccess("ISBN", book.getIsbn() , "deleted");
+        PrinterDriverBook.printSuccess("ISBN", book.getIsbn() , "deleted");
   
         } catch (SQLException e) {
             System.out.println("Task Failed:\nThere was an error deleting the book from the database.\n");
@@ -107,7 +94,7 @@ public class Books {
     public void updateBook(Book book) {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("UPDATE books SET");
+        sb.append("UPDATE books SET ");
         sb.append("title = ?, ");
         sb.append("author = ?, ");
         sb.append("publisher = ?, ");
@@ -140,23 +127,31 @@ public class Books {
 
         ps.executeUpdate();
 
-        BookPrinter.printSuccess("ISBN", book.getIsbn() , "updated");
+        PrinterDriverBook.printSuccess("ISBN", book.getIsbn() , "updated");
 
         } catch (SQLException e) {
-            System.out.println("Task Failed:\nThere was an error adding the book to the database.\n");
+            System.out.println("Task Failed:\nThere was an error updating the book on the database.\n");
             //e.printStackTrace();
         }
     }
+
 
     public void getBooks(String attribute, String field) {
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append("SELECT * FROM books WHERE ");
-        sql.append(attribute);
-        sql.append(" LIKE LOWER(\"%");
-        sql.append(field);
-        sql.append("%\");");
+        if (attribute.equalsIgnoreCase("all") && field.equalsIgnoreCase("all")) {
+
+            sql.append("SELECT * FROM books;");
+
+        } else {
+
+            sql.append("SELECT * FROM books WHERE ");
+            sql.append(attribute);
+            sql.append(" LIKE LOWER(\"%");
+            sql.append(field);
+            sql.append("%\");");
+        }
 
         //System.out.println(sql.toString());
 
@@ -173,34 +168,39 @@ public class Books {
 
             while (rs.next()) {
 
-                StringBuilder sb = new StringBuilder();
-                sb.append("\n<<>><<>><<>><<>><<>><<>><<>><<>>\n\n");
-                sb.append("ISBN: ").append(rs.getString("isbn")).append("\n");
-                sb.append("Title: ").append(rs.getString("title")).append("\n");
-                sb.append("Author: ").append(rs.getString("author")).append("\n");
-                sb.append("Publisher: ").append(rs.getString("publisher")).append("\n");
-                sb.append("Publication Year: ").append(rs.getString("publication_year")).append("\n");
-                sb.append("Page Count: ").append(rs.getString("page_count")).append("\n");
-                sb.append("Stock Quantity: ").append(rs.getString("stock_quantity")).append("\n");
-                sb.append("Genre: ").append(rs.getString("genre")).append("\n");
-                sb.append("Language: ").append(rs.getString("language_db"));
-                
-                System.out.println(sb.toString());
+                Book book = new Book();
+
+                book.setIsbn(rs.getString("isbn"));
+                book.setTitle(rs.getString("title"));
+                book.setAuthor(rs.getString("author"));
+                book.setPublisher(rs.getString("publisher"));
+                book.setPublicationYear(rs.getInt("publication_year"));
+                book.setPageCount(rs.getInt("page_count"));
+                book.setStockQuantity(rs.getInt("stock_quantity"));
+                book.setGenre(rs.getString("genre"));
+                book.setLanguage(rs.getString("language_db"));
+
+                PrinterCommon.printSeparator();
+                PrinterDriverBook.printBookDetails(book);
+
             }
-            System.out.println("\n<<>><<>><<>><<>><<>><<>><<>><<>>\n");
+
+            PrinterCommon.printSeparator();
 
         } catch (Exception e) {
-            System.out.println("An error occurred while retrieving the books from the database.");
-            e.printStackTrace();
+            System.out.println("Task Failed:\nAn error occurred while retrieving the books from the database.\n");
+            //e.printStackTrace();
         }
         //System.out.println("END");
     }
 
 
+    public void getBooks() {
+        getBooks("all", "all");
+    }
 
-    public void getAllBooks() {
-
-        String SQL = "SELECT * FROM books";
+    public boolean checkIfExists(Book book) {
+        String SQL = "SELECT COUNT(*) FROM books WHERE isbn = ?;";
 
         try (
             Connection conn = DriverManager.getConnection(
@@ -209,29 +209,16 @@ public class Books {
                 this.DB_PASS
             );
             PreparedStatement ps = conn.prepareStatement(SQL);
-            ResultSet rs = ps.executeQuery();
         ) {
-            while (rs.next()) {
-
-                StringBuilder sb = new StringBuilder();
-                sb.append("\n<<>><<>><<>><<>><<>><<>><<>><<>>\n\n");
-                sb.append("ISBN: ").append(rs.getString("isbn")).append("\n");
-                sb.append("Title: ").append(rs.getString("title")).append("\n");
-                sb.append("Author: ").append(rs.getString("author")).append("\n");
-                sb.append("Publisher: ").append(rs.getString("publisher")).append("\n");
-                sb.append("Publication Year: ").append(rs.getString("publication_year")).append("\n");
-                sb.append("Page Count: ").append(rs.getString("page_count")).append("\n");
-                sb.append("Stock Quantity: ").append(rs.getString("stock_quantity")).append("\n");
-                sb.append("Genre: ").append(rs.getString("genre")).append("\n");
-                sb.append("Language: ").append(rs.getString("language_db"));
-                
-                System.out.println(sb.toString());
-            }
-            System.out.println("\n<<>><<>><<>><<>><<>><<>><<>><<>>\n");
-
-        } catch (Exception e) {
-            System.out.println("An error occurred while retrieving the books from the database.");
-            e.printStackTrace();
+            ps.setString(1, book.getIsbn());
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
+            return count > 0;
+        } catch (SQLException e) {
+            System.out.println("Task Failed:\nThere was an error checking if the book exists in the database.");
+            return false;
         }
     }
+
 }

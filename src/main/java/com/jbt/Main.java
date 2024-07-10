@@ -1,21 +1,18 @@
 package com.jbt;
 
 import com.jbt.db.Config;
+import com.jbt.sysout.menus.MenuMain;
 
 public class Main {
-	
-	public static void main(String[] args) {
-		
-		System.out.println("Starting Book Management Application...");
-		
-		Config.initConfig();
 
-		//MainTests.test_getBooks();
+    public static void main(String[] args) {
 
-		//MainTests.test_addBook();
+        Config.initConfig();
 
-		MainTests.test_updateBook();
+        MenuMain.displayMainMenu();
+        
+        MenuMain.displayExitMessage();
 
-	}
+    }
 
 }

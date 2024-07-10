@@ -1,10 +1,10 @@
-package com.jbt.sysout.printers;
+package com.jbt.sysout.printers.drivers;
 
-public class BookPrinter {
+import com.jbt.db.containers.Book;
 
+public class PrinterDriverBook {
 
-/*
-    protected void printBookDetails(Book book) {
+    public static void printBookDetails(Book book) {
         System.out.println("ISBN: " + book.getIsbn());
         System.out.println("Title: " + book.getTitle());
         System.out.println("Author: " + book.getAuthor());
@@ -14,9 +14,8 @@ public class BookPrinter {
         System.out.println("Stock Quantity: " + book.getStockQuantity());
         System.out.println("Genre: " + book.getGenre());
         System.out.println("Language: " + book.getLanguage());
-    }*/
+    }
 
-    
     public static void printSuccess(String attribute, String field, String event){
 
         StringBuilder sb = new StringBuilder();

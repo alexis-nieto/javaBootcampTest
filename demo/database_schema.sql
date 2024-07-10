@@ -31,7 +31,6 @@ CREATE TABLE members (
     state_db VARCHAR(100),
     zip_code VARCHAR(20),
     membership_start_date DATE NOT NULL,
-    membership_end_date DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

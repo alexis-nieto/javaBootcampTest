@@ -93,7 +93,7 @@ public abstract class Config {
                 jsonSkeleton = null; // Clear StringBuilder object
 
             } else {
-                System.out.println("Config file already contains data, skipping init...");
+                System.out.println("\nConfiguration file is already populated, skipping init...\n");
             }
 
         } catch (IOException e) {
