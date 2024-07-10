@@ -15,7 +15,6 @@ public class MenuLoans {
 
         while (!exit) {
 
-            PrinterCommon.clearScreen();
             PrinterMenuLoans.printLoanMenu();
 
             String choice = scanner.nextLine();
@@ -24,6 +23,8 @@ public class MenuLoans {
             switch (choice) {
                 case "1":
                     // Add Loan
+                    PrinterCommon.clearScreen();
+                    MenuLoansBorrow.borrowBook();
                     continue;
                 case "2":
                     // retun Loan
@@ -39,6 +40,5 @@ public class MenuLoans {
                     continue; // Restart the loop to ask for input again
             }
         }
-        PrinterCommon.clearScreen();
     }
 }

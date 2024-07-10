@@ -221,4 +221,50 @@ public class Books {
         }
     }
 
+    public int getStockQuantity(Book book){
+        String SQL = "SELECT stock_quantity FROM books WHERE isbn = ?;";
+
+        try (
+            Connection conn = DriverManager.getConnection(
+                this.DB_URL,
+                this.DB_USER,
+                this.DB_PASS
+            );
+            PreparedStatement ps = conn.prepareStatement(SQL);
+        ) {
+            ps.setString(1, book.getIsbn());
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+                return rs.getInt("stock_quantity");
+            }
+
+            return 0;
+            
+        } catch (SQLException e) {
+            System.out.println("Task Failed:\nThere was an error retrieving the stock quantity for the book from the database.");
+            return 0;
+        }
+    }
+
+    public boolean decreaseStockQuantity(Book book) {
+        String SQL = "UPDATE books SET stock_quantity = stock_quantity - 1 WHERE isbn = ? AND stock_quantity > 0;";
+
+        try (
+            Connection conn = DriverManager.getConnection(
+                this.DB_URL,
+                this.DB_USER,
+                this.DB_PASS
+            );
+            PreparedStatement ps = conn.prepareStatement(SQL);
+        ) {
+            ps.setString(1, book.getIsbn());
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.out.println("Task Failed:\nThere was an error decreasing the stock quantity for the book in the database.");
+            return false;
+        }
+    }
+
 }
