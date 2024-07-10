@@ -3,18 +3,18 @@ package com.jbt.sysout.menus.members;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.jbt.db.drivers.Books;
+import com.jbt.db.drivers.Members;
 import com.jbt.sysout.PrinterCommon;
-import com.jbt.sysout.printers.menus.PrinterMenuBooks;
+import com.jbt.sysout.printers.menus.PrinterMenuMembers;
 
 public class MenuMemberSearch {
 
     public static Scanner scanner = new Scanner(System.in);
 
-    public static void searchBook() {
+    public static void searchMember() {
 
-        PrinterMenuBooks.printBookSearch();
-        Books books = new Books();
+        PrinterMenuMembers.printMemberSearch();
+        Members members = new Members();
         
         boolean validChoice = false;
         while (!validChoice) {
@@ -23,80 +23,110 @@ public class MenuMemberSearch {
                 
                 switch (choice) {
                     case "1":
-                        // Perform search by ISBN
-                        String isbn = "";
-                        while (isbn.isEmpty()) {
-                            System.out.println("Enter ISBN:");
-                            isbn = scanner.nextLine().trim();
-                        }
-                        validChoice = true;
-                        books.getBooks("isbn", isbn);
-                        break;
-                    case "2":
-                        // Perform search by Title
-                        String title = "";
-                        while (title.isEmpty()) {
-                            System.out.println("Enter Title:");
-                            title = scanner.nextLine().trim();
-                        }
-                        validChoice = true;
-                        books.getBooks("title", title);
-                        break;
-                    case "3":
-                        // Perform search by Author
-                        String author = "";
-                        while (author.isEmpty()) {
-                            System.out.println("Enter Author:");
-                            author = scanner.nextLine().trim();
-                        }
-                        validChoice = true;
-                        books.getBooks("author", author);
-                        break;
-                    case "4":
-                        // Perform search by Publisher
-                        String publisher = "";
-                        while (publisher.isEmpty()) {
-                            System.out.println("Enter Publisher:");
-                            publisher = scanner.nextLine().trim();
-                        }
-                        validChoice = true;
-                        books.getBooks("publisher", publisher);
-                        break;
-                    case "5":
-                        // Perform search by Publication Year
-                        int publicationYear = 0;
-                        while (publicationYear <= 0) {
+                        // Perform search by Member ID
+                        int memberId = 0;
+                        while (memberId <= 0) {
                             try {
-                                System.out.println("Enter Publication Year:");
-                                publicationYear = scanner.nextInt();
+                                System.out.println("Enter Member ID:");
+                                memberId = scanner.nextInt();
                                 scanner.nextLine(); // Consume the newline character
                             } catch (InputMismatchException e) {
-                                System.out.println("Invalid input. Please enter a valid publication year.");
+                                System.out.println("Invalid input. Please enter a valid member ID.");
                                 scanner.nextLine(); // Consume the invalid input
                             }
                         }
                         validChoice = true;
-                        books.getBooks("publication_year", String.valueOf(publicationYear));                        break;
-                    case "6":
-                        // Perform search by Genre
-                        String genre = "";
-                        while (genre.isEmpty()) {
-                            System.out.println("Enter Genre:");
-                            genre = scanner.nextLine().trim();
+                        members.getMembers("member_id", String.valueOf(memberId));
+                        break;
+                    case "2":
+                        // Perform search by First Name
+                        String firstName = "";
+                        while (firstName.isEmpty()) {
+                            System.out.println("Enter First Name:");
+                            firstName = scanner.nextLine().trim();
                         }
-                        books.getBooks("genre", genre);
                         validChoice = true;
+                        members.getMembers("first_name", firstName);
+                        break;
+                    case "3":
+                        // Perform search by Last Name
+                        String lastName = "";
+                        while (lastName.isEmpty()) {
+                            System.out.println("Enter Last Name:");
+                            lastName = scanner.nextLine().trim();
+                        }
+                        validChoice = true;
+                        members.getMembers("last_name", lastName);
+                        break;
+                    case "4":
+                        // Perform search by Email
+                        String email = "";
+                        while (email.isEmpty()) {
+                            System.out.println("Enter Email:");
+                            email = scanner.nextLine().trim();
+                        }
+                        validChoice = true;
+                        members.getMembers("email", email);
+                        break;
+                    case "5":
+                        // Perform search by Phone Number
+                        String phoneNumber = "";
+                        while (phoneNumber.isEmpty()) {
+                            System.out.println("Enter Phone Number:");
+                            phoneNumber = scanner.nextLine().trim();
+                        }
+                        validChoice = true;
+                        members.getMembers("phone_number", phoneNumber);
+                        break;
+                    case "6":
+                        // Perform search by Address
+                        String address = "";
+                        while (address.isEmpty()) {
+                            System.out.println("Enter Address:");
+                            address = scanner.nextLine().trim();
+                        }
+                        validChoice = true;
+                        members.getMembers("address_db", address);
                         break;
                     case "7":
-                        // Perform search by Language
-                        String language = "";
-                        while (language.isEmpty()) {
-                            System.out.println("Enter Language:");
-                            language = scanner.nextLine().trim();
+                        // Perform search by City
+                        String city = "";
+                        while (city.isEmpty()) {
+                            System.out.println("Enter City:");
+                            city = scanner.nextLine().trim();
                         }
-                        
                         validChoice = true;
-                        books.getBooks("language_db", language);
+                        members.getMembers("city", city);
+                        break;
+                    case "8":
+                        // Perform search by State
+                        String state = "";
+                        while (state.isEmpty()) {
+                            System.out.println("Enter State:");
+                            state = scanner.nextLine().trim();
+                        }
+                        validChoice = true;
+                        members.getMembers("state_db", state);
+                        break;
+                    case "9":
+                        // Perform search by Zip Code
+                        String zipCode = "";
+                        while (zipCode.isEmpty()) {
+                            System.out.println("Enter Zip Code:");
+                            zipCode = scanner.nextLine().trim();
+                        }
+                        validChoice = true;
+                        members.getMembers("zip_code", zipCode);
+                        break;
+                    case "10":
+                        // Perform search by Membership Start Date
+                        String membershipStartDate = "";
+                        while (membershipStartDate.isEmpty()) {
+                            System.out.println("Enter Membership Start Date (yyyy-MM-dd):");
+                            membershipStartDate = scanner.nextLine().trim();
+                        }
+                        validChoice = true;
+                        members.getMembers("membership_start_date", membershipStartDate);
                         break;
                     default:
                         System.out.println("Invalid choice. Please try again.");
