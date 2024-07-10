@@ -35,7 +35,7 @@ public class MenuBooks {
                 case "3":
                     // Delete Book
                     //PrinterCommon.clearScreen();
-                    //MenuBookUpdate.updateBook();
+                    MenuBookDelete.deleteBook();
                     break;
                 case "4":
                     // View Books
