@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.jbt.db.drivers.Members;
 import com.jbt.sysout.PrinterCommon;
+import com.jbt.sysout.menus.books.MenuBookSearch;
 import com.jbt.sysout.printers.menus.PrinterMenuMembers;
 
 public class MenuMembers {
@@ -35,6 +36,8 @@ public class MenuMembers {
                     break;
                 case "4":
                     // View Members
+                    PrinterCommon.clearScreen();
+                    MenuMemberSearch.searchMember();
                     break;
                 case "5":
                     // View ALL Members
