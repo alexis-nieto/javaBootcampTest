@@ -2,12 +2,11 @@ package com.jbt.db.containers;
 
 import java.util.Date;
 
+
 /**
- * Represents a member with various attributes such as member ID, first name, last name, phone number,
- * email, address, city, state, zip code, membership start date, and membership end date.
- * Provides getters and setters for accessing and modifying the member's attributes.
- * Implements validation checks for the setter methods to ensure data integrity.
- * Overrides the toString() method to provide a JSON-like string representation of the member object.
+ * Represents a member with various attributes such as name, contact information, address, and membership dates.
+ * Provides getter and setter methods for accessing and modifying the member's attributes.
+ * Enforces validation rules for each attribute to ensure data integrity.
  */
 public class Member {
     private int memberId = 0;
@@ -269,9 +268,4 @@ public class Member {
           }
       }
 
-      /**
-     * Gets the membership end date of the member.
-     *
-     * @return The membership end date of the member.
-     */
 }

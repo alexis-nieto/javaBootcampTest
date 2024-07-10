@@ -1,12 +1,13 @@
 package com.jbt.db.containers;
 
 
+
 /**
  * Represents a book with various attributes such as ISBN, title, author, publisher, publication year,
  * page count, stock quantity, genre, and language.
- * Provides getters and setters for accessing and modifying the book's attributes.
+ * Provides getter and setter methods for accessing and modifying the book's attributes.
  * Implements validation checks for the setter methods to ensure data integrity.
- * Overrides the toString() method to provide a JSON-like string representation of the book object.
+ * Includes a deprecated toString() method for generating a JSON-like string representation of the book.
  */
 public class Book {
     private String isbn = "DEFAULT ISBN";
@@ -42,6 +43,7 @@ public class Book {
         return sb.toString();
     }
 
+
     /**
              * Gets the ISBN of the book.
              *
@@ -52,11 +54,11 @@ public class Book {
     }
 
     /**
-         * Sets the ISBN of the book.
-         *
-         * @param isbn The ISBN of the book. Must be non-null and have a maximum length of 13 characters.
-         * @throws IllegalArgumentException If the ISBN is null or exceeds 13 characters.
-         */
+             * Sets the ISBN of the book.
+             *
+             * @param isbn The ISBN of the book. Must be non-null and have a maximum length of 13 characters.
+             * @throws IllegalArgumentException If the ISBN is null or exceeds 13 characters.
+             */
     public void setIsbn(String isbn) {
         if (isbn != null && isbn.length() <= 13) {
             this.isbn = isbn;
@@ -93,10 +95,10 @@ public class Book {
     }
 
     /**
-         * Gets the author of the book.
-         *
-         * @return The author of the book.
-         */
+             * Gets the author of the book.
+             *
+             * @return The author of the book.
+             */
     public String getAuthor() {
         return author;
     }
@@ -117,11 +119,12 @@ public class Book {
         }
     }
 
+
     /**
-         * Gets the publisher of the book.
-         *
-         * @return The publisher of the book.
-         */
+             * Gets the publisher of the book.
+             *
+             * @return The publisher of the book.
+             */
     public String getPublisher() {
         return publisher;
     }
@@ -143,19 +146,19 @@ public class Book {
     }
 
     /**
-         * Gets the publication year of the book.
-         *
-         * @return The publication year of the book.
-         */
+             * Gets the publication year of the book.
+             *
+             * @return The publication year of the book.
+             */
     public int getPublicationYear() {
         return publicationYear;
     }
 
     /**
-         * Sets the publication year of the book.
-         *
-         * @param publicationYear The publication year of the book.
-         */
+             * Sets the publication year of the book.
+             *
+             * @param publicationYear The publication year of the book.
+             */
     public void setPublicationYear(int publicationYear) {
         this.publicationYear = publicationYear;
     }
@@ -170,11 +173,11 @@ public class Book {
     }
 
     /**
-             * Sets the page count of the book.
-             *
-             * @param pageCount The page count of the book. Must be a non-negative integer.
-             * @throws IllegalArgumentException If the page count is a negative integer.
-             */
+         * Sets the page count of the book.
+         *
+         * @param pageCount The page count of the book. Must be a non-negative integer.
+         * @throws IllegalArgumentException If the page count is a negative integer.
+     */
     public void setPageCount(int pageCount) {
         if (pageCount >= 0) {
             this.pageCount = pageCount;

@@ -15,7 +15,6 @@ public class MenuLoans {
 
         while (!exit) {
 
-            PrinterCommon.clearScreen();
             PrinterMenuLoans.printLoanMenu();
 
             String choice = scanner.nextLine();
@@ -24,21 +23,33 @@ public class MenuLoans {
             switch (choice) {
                 case "1":
                     // Add Loan
+                    PrinterCommon.clearScreen();
+                    MenuLoansBorrow.borrowBook();
                     continue;
                 case "2":
-                    // retun Loan
+                    // return Loan
+                    PrinterCommon.clearScreen();
+                    MenuLoansReturn.returnBook();
                     continue;
                 case "3":
                     // view Loan
+                    PrinterCommon.clearScreen();
+                    MenuLoansHistory.viewLoanHistory();
                     continue;
                 case "4":
+                    // Check book availability
+                    PrinterCommon.clearScreen();
+                    MenuLoansCheckStock.checkStock();
+                    System.out.println("lol");
+                    continue;
+                case "5":
                     exit = true;
+                    PrinterCommon.clearScreen();
                     continue;
                 default:
                     System.out.println("Invalid choice. Please try again.");
                     continue; // Restart the loop to ask for input again
             }
         }
-        PrinterCommon.clearScreen();
     }
 }

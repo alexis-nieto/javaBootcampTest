@@ -5,7 +5,6 @@ import java.util.Scanner;
 import com.jbt.db.drivers.Members;
 import com.jbt.sysout.PrinterCommon;
 import com.jbt.sysout.printers.menus.PrinterMenuMembers;
-
 public class MenuMembers {
 
     private static Scanner scanner = new Scanner(System.in);
@@ -30,7 +29,7 @@ public class MenuMembers {
                 case "2":
                     // Update Member
                     PrinterCommon.clearScreen();
-                    
+                    MenuMemberUpdate.updateMember();
                     break;
                 case "3":
                     // Delete Member
