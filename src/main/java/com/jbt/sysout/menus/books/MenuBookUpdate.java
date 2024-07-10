@@ -19,8 +19,12 @@ public class MenuBookUpdate {
 
         System.out.print("Enter ISBN of the book to update: ");
         String isbn = scanner.nextLine();
+        while (isbn.isEmpty() || !isbn.matches("\\d{10,13}")) {
+            System.out.print("Invalid ISBN. Please enter a valid ISBN (10-13 digits): ");
+            isbn = scanner.nextLine();
+        }
         book.setIsbn(isbn);
-
+        
         if (books.checkIfExists(book)) {
             System.out.print("Enter new title: ");
             String newTitle = scanner.nextLine();

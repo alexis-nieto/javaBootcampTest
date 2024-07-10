@@ -21,8 +21,8 @@ public class MenuBookAdd {
 
         System.out.print("ISBN: ");
         String isbn = scanner.nextLine();
-        while (isbn.isEmpty()) {
-            System.out.print("ISBN cannot be empty. Please enter a valid title: ");
+        while (isbn.isEmpty() || !isbn.matches("\\d{10}|\\d{13}")) {
+            System.out.print("Invalid ISBN. Please enter a valid 10 or 13 digit ISBN: ");
             isbn = scanner.nextLine();
         }
         book.setIsbn(isbn);
