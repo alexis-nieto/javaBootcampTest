@@ -58,15 +58,7 @@ VALUES
     ('9780593311233', 'The Nickel Boys', 'Colson Whitehead', 'Doubleday', 2019, 224, 6, 'Historical Fiction', 'English'),
     ('9780593230251', 'The Anthropocene Reviewed', 'John Green', 'Dutton', 2021, 304, 14, 'Essays', 'English'),
     ('9780593311219', 'The Midnight Bargain', 'C.L. Polk', 'Erewhon', 2020, 384, 9, 'Fantasy', 'English'),
-    ('9780593087497', 'The Prophets', 'Robert Jones Jr.', 'G.P. Putnam''s Sons', 2021, 400, 11, 'Historical Fiction', 'English'),
-    ('9780593311264', 'The Invisible Life of Addie LaRue', 'V.E. Schwab', 'Tor Books', 2020, 448, 10, 'Fantasy', 'English'),
-    ('9780593190524', 'The Overstory', 'Richard Powers', 'W. W. Norton & Company', 2018, 512, 8, 'Environmental Fiction', 'English'),
-    ('9780593311240', 'The Nickel Boys', 'Colson Whitehead', 'Doubleday', 2019, 224, 6, 'Historical Fiction', 'English'),
-    ('9780593230268', 'The Anthropocene Reviewed', 'John Green', 'Dutton', 2021, 304, 14, 'Essays', 'English'),
-    ('9780593311226', 'The Midnight Bargain', 'C.L. Polk', 'Erewhon', 2020, 384, 9, 'Fantasy', 'English'),
-    ('9780593087503', 'The Prophets', 'Robert Jones Jr.', 'G.P. Putnam''s Sons', 2021, 400, 11, 'Historical Fiction', 'English'),
-    ('9780593311271', 'The Midnight Library', 'Matt Haig', 'Viking', 2020, 304, 15, 'Magical Realism', 'English'),
-    ('9780525559481', 'The Vanishing Half', 'Brit Bennett', 'Riverhead Books', 2020, 352, 12, 'Historical Fiction', 'English');
+    ('9780593087497', 'The Prophets', 'Robert Jones Jr.', 'G.P. Putnam''s Sons', 2021, 400, 11, 'Historical Fiction', 'English');
 
 -- Insert sample data into the 'members' table
 INSERT INTO members (first_name, last_name, phone_number, email, address_db, city, state_db, zip_code, membership_start_date)
