@@ -37,6 +37,9 @@ public class MenuLoans {
                     MenuLoansHistory.viewLoanHistory();
                     continue;
                 case "4":
+                    // Check book availability
+
+                case "5":
                     exit = true;
                     PrinterCommon.clearScreen();
                     continue;
