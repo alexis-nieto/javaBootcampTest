@@ -38,7 +38,10 @@ public class MenuLoans {
                     continue;
                 case "4":
                     // Check book availability
-
+                    PrinterCommon.clearScreen();
+                    MenuLoansCheckStock.checkStock();
+                    System.out.println("lol");
+                    continue;
                 case "5":
                     exit = true;
                     PrinterCommon.clearScreen();
