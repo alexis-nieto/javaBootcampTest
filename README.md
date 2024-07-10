@@ -285,15 +285,7 @@ VALUES
     ('9780593311233', 'The Nickel Boys', 'Colson Whitehead', 'Doubleday', 2019, 224, 6, 'Historical Fiction', 'English'),
     ('9780593230251', 'The Anthropocene Reviewed', 'John Green', 'Dutton', 2021, 304, 14, 'Essays', 'English'),
     ('9780593311219', 'The Midnight Bargain', 'C.L. Polk', 'Erewhon', 2020, 384, 9, 'Fantasy', 'English'),
-    ('9780593087497', 'The Prophets', 'Robert Jones Jr.', 'G.P. Putnam''s Sons', 2021, 400, 11, 'Historical Fiction', 'English'),
-    ('9780593311264', 'The Invisible Life of Addie LaRue', 'V.E. Schwab', 'Tor Books', 2020, 448, 10, 'Fantasy', 'English'),
-    ('9780593190524', 'The Overstory', 'Richard Powers', 'W. W. Norton & Company', 2018, 512, 8, 'Environmental Fiction', 'English'),
-    ('9780593311240', 'The Nickel Boys', 'Colson Whitehead', 'Doubleday', 2019, 224, 6, 'Historical Fiction', 'English'),
-    ('9780593230268', 'The Anthropocene Reviewed', 'John Green', 'Dutton', 2021, 304, 14, 'Essays', 'English'),
-    ('9780593311226', 'The Midnight Bargain', 'C.L. Polk', 'Erewhon', 2020, 384, 9, 'Fantasy', 'English'),
-    ('9780593087503', 'The Prophets', 'Robert Jones Jr.', 'G.P. Putnam''s Sons', 2021, 400, 11, 'Historical Fiction', 'English'),
-    ('9780593311271', 'The Midnight Library', 'Matt Haig', 'Viking', 2020, 304, 15, 'Magical Realism', 'English'),
-    ('9780525559481', 'The Vanishing Half', 'Brit Bennett', 'Riverhead Books', 2020, 352, 12, 'Historical Fiction', 'English');
+    ('9780593087497', 'The Prophets', 'Robert Jones Jr.', 'G.P. Putnam''s Sons', 2021, 400, 11, 'Historical Fiction', 'English');
 
 -- Insert sample data into the 'members' table
 INSERT INTO members (first_name, last_name, phone_number, email, address_db, city, state_db, zip_code, membership_start_date)
@@ -331,6 +323,7 @@ VALUES
     (10, '9780525559474', '2024-01-30', '2024-02-13');
 ```
 
+
 ### Timestamps
 The `created_at` and `updated_at` columns in each table are used to track the creation and modification timestamps of records. These columns are automatically populated and updated by the database system.
 
@@ -341,3 +334,12 @@ Stores the timestamp when a record is inserted into the table.
 Stores the timestamp when a record is updated in the table.
 
 These timestamps can be useful for auditing, tracking changes, and determining the age or freshness of records.
+
+
+# Testing
+
+Due to time constrains, some basic JUnit testing was done for the DB Drivers only.
+
+The test class is located on `/src/test/java/com/jbt/db/drivers/DriversTest.java`.
+
+The version of was: [JUnit Jupiter API » 5.11.0-M2](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.11.0-M2)
